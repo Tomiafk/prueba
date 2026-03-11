@@ -1,16 +1,10 @@
-def cajero(pin, cuenta, opcion):
-	if len(pin) == 4:
-		if opcion == 0:
-			print("Las opciones son:")
-			print("1  Retiro")
-			print("2  Deposito")
-			print("3  Consulta (Consulta de saldo)")
-			print("4 Cambio de moneda")
-	else:
-		print("Pin invalido")
 
-poner_pin = str(input("Ingrese su pin de 4 digitos: "))
-print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(0)")
-cuentatipo = int(input())
-elegir = int(input("Ingresa una opcion (0 para help): "))
-cajero(poner_pin, cuentatipo, elegir)
+def definiciones_finales():
+	from definiciones import retiro # 1
+	from definiciones import deposito # 2
+	from definiciones import consulta_saldo # 3
+	from definiciones import cambio_moneda # 4
+	from definiciones import info_cuenta # 5
+	from definiciones import salir # 6
+	from definiciones import confirmacion_salir # 7
+	from definiciones import inicio # 8

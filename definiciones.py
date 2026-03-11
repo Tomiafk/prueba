@@ -209,3 +209,27 @@ def confirmacion_salir():
 	else:
 		print("Opcion no valida")
 
+# Iniciar
+def inicio():
+	pin = int(input("Ingrese su pin de 4 digitos: "))
+	pin = str(pin)
+	if len(pin) == 4:
+		print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(0)")
+		cuenta = int(input())
+		saldo_bs = 1000
+		saldo_dol = 0
+		saldo_libras = 0
+		saldo_euro = 0
+		while True:
+			opcion = int(input("Ingresa una opcion (0 para help): "))
+			if opcion == 0:
+				print("Las opciones son:")
+				print("1  Retiro")
+				print("2  Deposito")
+				print("3  Consulta (Consulta de saldo)")
+				print("4  Cambio de moneda")
+				print("5  Informacion de cuenta")
+				print("6  Salir")
+	else:
+		print("Pin invalido")
+	
