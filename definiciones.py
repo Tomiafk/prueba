@@ -1,5 +1,6 @@
 # Zona de Definiciones
 
+
 # Retiro
 def retiro(opcion):
 	print("Retiro en:")
@@ -19,7 +20,6 @@ def retiro(opcion):
 		saldo_euro = saldo_euro - saldo_a_retirar
 	else:
 		print("Opcion no valida")
-
 
 # Deposito
 def deposito(opcion):
@@ -41,4 +41,171 @@ def deposito(opcion):
 	else:
 		print("Opcion no valida")
 
-#
+# Consulta de Saldo
+def consulta_saldo(opcion):
+	print("Tu saldo en Bolivianos es: ", round(saldo_bs, 2))
+	print("Tu saldo en Dolares es: ", round(saldo_dol, 2))
+	print("Tu saldo en Libras esterlinas es: ", round(saldo_libras, 2))
+	print("Tu saldo en Euro es: ", round(saldo_euro, 2))
+
+# Cambio de moneda
+def cambio_moneda(opcion):
+	print("Selecciona la moneda:")
+	print("1. Bolivianos")
+	print("2. Dolares")
+	print("3. Libras esterlinas")
+	print("4. Euro")
+	tipo_moneda = int(input())
+	if tipo_moneda == 1:
+		print("Selecciona el tipo de cambio: ")
+		print("1. Dolares")
+		print("2. Libras esterlinas")
+		print("3. Euro")
+		tipo_cambio = int(input())
+		monto_convertir = float(input("Ingresa monto a convertir: "))
+		if monto_convertir <= saldo_bs:
+			if tipo_cambio == 1:
+				saldo_bs = saldo_bs - monto_convertir
+				saldo_dol = round((monto_convertir / 6.96), 2)
+			elif tipo_cambio == 2:
+				saldo_bs = saldo_bs - monto_convertir
+				saldo_libras = round((monto_convertir / 9.20), 2)
+			elif tipo_cambio == 3:
+				saldo_bs = saldo_bs - monto_convertir
+				saldo_euro = round((monto_convertir / 7.99), 2)
+			else:
+				print("Opcion no valida")
+		else:
+			print("Sin saldo suficiente")
+	elif tipo_moneda == 2:
+		print("Selecciona el tipo de cambio: ")
+		print("1. Bolivianos")
+		print("2. Libras esterlinas")
+		print("3. Euro")
+		tipo_cambio = int(input())
+		monto_convertir = float(input("Ingresa monto a convertir: "))
+		if monto_convertir <= saldo_dol:
+			if tipo_cambio == 1:
+				saldo_dol = saldo_dol - monto_convertir
+				saldo_bs = round((monto_convertir * 6.96) ,2)
+			elif tipo_cambio == 2:
+				saldo_dol = saldo_dol - monto_convertir
+				saldo_libras = round((monto_convertir / 1.33), 2)
+			elif tipo_cambio == 3:
+				saldo_dol = saldo_dol - monto_convertir
+				saldo_dol = round((monto_convertir / 1.16), 2)
+			else:
+				print("Opcion no valida")
+		else:
+			print("Sin saldo suficiente")
+	elif tipo_moneda == 3:
+		print("Selecciona el tipo de cambio: ")
+		print("1. Bolivianos")
+		print("2. Dolares")
+		print("3. Euro")
+		tipo_cambio = int(input())
+		monto_convertir = float(input("Ingresa monto a convertir: "))
+		if monto_convertir <= saldo_libras:
+			if tipo_cambio == 1:
+				saldo_libras = saldo_libras - monto_convertir
+				saldo_bs = round((monto_convertir * 9.20), 2)
+			elif tipo_cambio == 2:
+				saldo_dol = saldo_libras - monto_convertir
+				saldo_libras = round((monto_convertir * 1.33), 2)
+			elif tipo_cambio == 3:
+				saldo_libras = saldo_libras - monto_convertir
+				saldo_euro = round((monto_convertir * 1.15), 2)
+			else:
+				print("Opcion no valida")
+		else:
+			print("Sin saldo suficiente")
+
+	elif tipo_moneda == 4:
+		print("Selecciona el tipo de cambio: ")
+		print("1. Bolivianos")
+		print("2. Dolares")
+		print("3. Libras esterlinas")
+		tipo_cambio = int(input())
+		monto_convertir = float(input("Ingresa monto a convertir: "))
+		if monto_convertir <= saldo_euro:
+			if tipo_cambio == 1:
+				saldo_euro = saldo_euro - monto_convertir
+				saldo_bs = round((monto_convertir * 7.99), 2)
+			elif tipo_cambio == 2:
+				saldo_euro = saldo_euro - monto_convertir
+				saldo_dol = round((monto_convertir * 1.16), 2)
+			elif tipo_cambio == 3:
+				saldo_euro = saldo_euro - monto_convertir
+				saldo_libras = round((monto_convertir / 1.15), 2)
+			else:
+				print("Opcion no valida")
+		else:
+			print("Sin saldo suficiente")
+
+
+
+# Informacion de la cuenta
+def info_cuenta(opcion):
+	print("Informacion de tu cuenta: ")
+	print("Banco del Tigre")
+	print("Pin: ****")
+	if cuenta == 1:
+		print("Tipo de cuenta: Caja de Ahorro")
+	elif cuenta == 2:
+		print("Tipo de cuenta: Cuenta Corriente")
+	elif cuenta == 0:
+		print("Tipo de cuenta: Extranjero")
+
+	print("Desea revelar el pin? ")
+	print("Y o N")
+
+	pin_revelar = input()
+	if pin_revelar == "Y":
+		print("Informacion de tu cuenta: ")
+		print("Banco del Tigre")
+		print("Pin: ",pin)
+		if cuenta == 1:
+			print("Tipo de cuenta: Caja de Ahorro")
+		elif cuenta == 2:
+			print("Tipo de cuenta: Cuenta Corriente")
+		elif cuenta == 0:
+			print("Tipo de cuenta: Extranjero")
+
+	elif pin_revelar == "N":
+		print("")
+	else:
+		print("Opcion no valida")
+
+# Salir
+def salir(opcion):
+	print("Esta seguro de que desea salir?" )
+	print("Y o N")
+	seguro_salir = input()
+	if seguro_salir == "Y":
+		print("Muchas gracias por usar nuestro servicio :3")
+		break
+	elif seguro_salir == "N":
+		print("")
+	else:
+		print("Opcion no valida")
+
+# Confirmacion salir
+def confirmacion_salir():
+	print("Desea hacer otra transaccion? ")
+	print("Y o N")
+	fin_trans = input()
+	if fin_trans == "N":
+		print("Esta seguro? ")
+		fin = input()
+		if fin == "Y":
+			print("Muchas gracias por usar nuestro servicio :3")
+			break
+		elif fin == "N":
+			print("")
+		else:
+			print("Opcion no valida")
+	elif fin_trans == "Y":
+		print("")
+	else:
+		print("Opcion no valida")
+
