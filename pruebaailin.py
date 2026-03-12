@@ -14,4 +14,3 @@ label.place(x = 100, y = 50)
 label.pack(fill=tkinter.BOTH, expand=True)
 #ventana.pack(label)
 ventana.mainloop()
-
