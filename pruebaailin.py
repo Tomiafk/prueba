@@ -8,8 +8,9 @@ import tkinter
 #labels ()
 #
 ventana=tkinter.Tk()  
-ventana.geometry("400x300")   
-label=tkinter.Label(ventana,text="cajero", bg = "red")  
-label.pack(fill=tkinter.BOTH, expand=True) 
+ventana.geometry("1200x800")   
+label=tkinter.Label(ventana,text="cajero", bg = "gray", font = ("Arial", 20))
+label.place(x = 100, y = 50)
+label.pack(fill=tkinter.BOTH, expand=True)
+#ventana.pack(label)
 ventana.mainloop()
-
