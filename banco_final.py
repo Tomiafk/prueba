@@ -1,3 +1,4 @@
+#banking logic 
 import random
 import tkinter
 
@@ -326,8 +327,25 @@ def cajero_fin(iniciar):
 
 pin = ""
 cuenta = 0
-print("Bienvenido al Banco del Tigre")
-print("Presione 1 para iniciar")
-print("Presiona 0 para cancelar")
-iniciar = float(input())
-cajero_fin(iniciar)
+if __name__ == "__main__":
+    print("Bienvenido al Banco del Tigre")
+    iniciar = float(input())
+    cajero_fin(iniciar) 
+ 
+#adding function to connect Gui
+def retirar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if moneda == 1:
+        if monto <= saldo_bs:
+            saldo_bs -= monto
+            return "Retiro exitoso"
+        else:
+            return "Saldo insuficiente"
+
+    elif moneda == 2:
+        if monto <= saldo_dol:
+            saldo_dol -= monto
+            return "Retiro exitoso"
+        else:
+            return "Saldo insuficiente"
