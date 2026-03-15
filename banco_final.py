@@ -311,12 +311,16 @@ def cajero_fin(iniciar):
         elif iniciar == 0:
             print("Esta seguro? ")
             print("Y o N")
-            saalir_fin = str(input())
+            saalir_fin = input()
             if saalir_fin == "Y":
                 print("Muchas gracias por usar nuestro servicio :3")
                 break
             elif saalir_fin == "N":
-                print("")
+                print("Bienvenido al Banco del Tigre")
+                print("Presione 1 para iniciar")
+                print("Presiona 0 para cancelar")
+                iniciar = float(input())
+
             else:
                 print("Opcion no valida")
         else:
