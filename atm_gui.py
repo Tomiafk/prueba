@@ -1,54 +1,289 @@
-#contains tkinter window 
-#buttons 
-#entries 
-#layout  
-#interface
 import tkinter as tk
-from banco_final import saldo_bs
+from banco_final import retirar_gui, depositar_gui, obtener_saldos
 
-def start_gui():
+# ---------------- WINDOW ----------------
 
-    window = tk.Tk()
-    window.title("Banco del Tigre ATM")
-    window.geometry("400x400")
+ventana = tk.Tk()
+ventana.title("Banco El Tigre ATM")
+ventana.geometry("1000x900")
+ventana.configure(bg="#FFD100")   # strong yellow
 
-    titulo = tk.Label(window, text="Banco del Tigre", font=("Arial",18))
-    titulo.pack(pady=20)
+# ---------------- VARIABLES ----------------
 
-    def ver_saldo():
-        saldo_label.config(text="Saldo: " + str(saldo_bs) + " Bs")
+numero_ingresado = ""
+estado = "inicio"
 
-    def abrir_retiro():
+# ---------------- SCREEN ----------------
 
-        retiro_window = tk.Toplevel(window)
-        retiro_window.title("Retiro")
+pantalla = tk.Label(
+    ventana,
+    text="Bienvenido\nBanco El Tigre",
+    bg="black",
+    fg="#FFD100",
+    font=("Courier",16),
+    width=30,
+    height=6
+)
 
-        label = tk.Label(retiro_window,text="Monto a retirar")
-        label.pack()
+pantalla.pack(pady=20)
 
-        entrada = tk.Entry(retiro_window)
-        entrada.pack()
+# ---------------- TIGER LOGO ----------------
 
-        def retirar():
-            monto = float(entrada.get())
-            resultado.config(text="Retiro simulado: " + str(monto))
+try:
+    logo = tk.PhotoImage(file="tigre_logo.png")
+    logo_label = tk.Label(ventana,image=logo,bg="#FFD100")
+    logo_label.pack()
+except:
+    pass
 
-        boton = tk.Button(retiro_window,text="Retirar",command=retirar)
-        boton.pack()
+# ---------------- ENTRY DISPLAY ----------------
 
-        resultado = tk.Label(retiro_window,text="")
-        resultado.pack()
+entrada = tk.Label(
+    ventana,
+    text="",
+    bg="white",
+    fg="black",
+    font=("Courier",16),
+    width=20
+)
 
-    boton_retirar = tk.Button(window,text="Retirar",width=20,command=abrir_retiro)
-    boton_retirar.pack(pady=10)
+entrada.pack(pady=10)
 
-    boton_saldo = tk.Button(window,text="Consultar saldo",width=20,command=ver_saldo)
-    boton_saldo.pack(pady=10)
+# ---------------- FUNCTIONS ----------------
 
-    saldo_label = tk.Label(window,text="")
-    saldo_label.pack(pady=20)
+def presionar(num):
+    global numero_ingresado
+    numero_ingresado += str(num)
+    entrada.config(text=numero_ingresado)
 
-    boton_salir = tk.Button(window,text="Salir",command=window.destroy)
-    boton_salir.pack(pady=10)
 
-    window.mainloop()
+def limpiar():
+    global numero_ingresado
+    numero_ingresado = ""
+    entrada.config(text="")
+
+
+def aceptar():
+
+    global numero_ingresado
+    global estado
+    global operacion
+    global moneda
+
+    # ---------- START ----------
+    if estado == "inicio":
+
+        pantalla.config(text=
+        "Opciones:\n"
+        "1 Retiro\n"
+        "2 Deposito\n"
+        "3 Consulta\n"
+        "4 Salir"
+        )
+
+        estado = "menu"
+        limpiar()
+        return
+
+
+    # ---------- MENU ----------
+    if estado == "menu":
+
+        if numero_ingresado == "1":
+
+            operacion = "retiro"
+
+            pantalla.config(text=
+            "Seleccione moneda:\n"
+            "1 Bolivianos\n"
+            "2 Dolares\n"
+            "3 Libras\n"
+            "4 Euro"
+            )
+
+            estado = "moneda"
+
+
+        elif numero_ingresado == "2":
+
+            operacion = "deposito"
+
+            pantalla.config(text=
+            "Seleccione moneda:\n"
+            "1 Bolivianos\n"
+            "2 Dolares\n"
+            "3 Libras\n"
+            "4 Euro"
+            )
+
+            estado = "moneda"
+
+
+        elif numero_ingresado == "3":
+
+            saldos = obtener_saldos()
+
+            pantalla.config(text=
+            f"BS: {saldos['bs']}\n"
+            f"USD: {saldos['usd']}\n"
+            f"GBP: {saldos['libras']}\n"
+            f"EUR: {saldos['euro']}\n\n"
+            "1 Otra\n2 Salir"
+            )
+
+            estado = "otra"
+
+
+        elif numero_ingresado == "4":
+
+            pantalla.config(text="Gracias por usar\nBanco El Tigre")
+
+            ventana.after(3000, reiniciar)
+
+            estado = "fin"
+
+        limpiar()
+        return
+
+
+    # ---------- MONEDA ----------
+    if estado == "moneda":
+
+        if numero_ingresado == "1":
+            moneda = "bs"
+
+        elif numero_ingresado == "2":
+            moneda = "usd"
+
+        elif numero_ingresado == "3":
+            moneda = "libras"
+
+        elif numero_ingresado == "4":
+            moneda = "euro"
+
+        pantalla.config(text="Ingrese monto:")
+
+        estado = "monto"
+        limpiar()
+        return
+
+
+    # ---------- MONTO ----------
+    if estado == "monto":
+
+        monto = float(numero_ingresado)
+
+        if operacion == "retiro":
+            mensaje = retirar_gui(moneda, monto)
+
+        if operacion == "deposito":
+            mensaje = depositar_gui(moneda, monto)
+
+        pantalla.config(text=
+        mensaje + "\n\n"
+        "Otra transaccion?\n"
+        "1 Si\n"
+        "2 No"
+        )
+
+        estado = "otra"
+        limpiar()
+        return
+
+
+    # ---------- OTRA TRANSACCION ----------
+    if estado == "otra":
+
+        if numero_ingresado == "1":
+
+            pantalla.config(text=
+            "Opciones:\n"
+            "1 Retiro\n"
+            "2 Deposito\n"
+            "3 Consulta\n"
+            "4 Salir"
+            )
+
+            estado = "menu"
+
+
+        elif numero_ingresado == "2":
+
+            pantalla.config(text="Gracias por usar\nBanco El Tigre")
+
+            ventana.after(3000, reiniciar)
+
+            estado = "fin"
+
+        limpiar()
+
+# ---------------- KEYPAD ----------------
+
+frame_teclado = tk.Frame(ventana,bg="#FFD100")
+frame_teclado.pack()
+
+numeros = [
+(1,0,0),(2,0,1),(3,0,2),
+(4,1,0),(5,1,1),(6,1,2),
+(7,2,0),(8,2,1),(9,2,2),
+(0,3,1)
+]
+
+for (num,r,c) in numeros:
+
+    boton = tk.Button(
+        frame_teclado,
+        text=num,
+        width=6,
+        height=2,
+        bg="black",
+        fg="#FFD100",
+        command=lambda n=num: presionar(n)
+    )
+
+    boton.grid(row=r,column=c,padx=5,pady=5)
+
+
+# ---------------- CONTROL BUTTONS ----------------
+
+tk.Button(
+    ventana,
+    text="Aceptar",
+    bg="black",
+    fg="#FFD100",
+    width=15,
+    command=aceptar
+).pack(pady=10)
+
+tk.Button(
+    ventana,
+    text="Borrar",
+    bg="black",
+    fg="#FFD100",
+    width=15,
+    command=limpiar
+).pack()
+
+# ---------------- START SCREEN ----------------
+
+pantalla.config(text=
+"Banco El Tigre\n\n"
+"Presione Aceptar\n"
+"para comenzar"
+)
+
+# ---------------- RUN ----------------
+def reiniciar():
+
+    global estado
+
+    estado = "inicio"
+
+    pantalla.config(text=
+    "Banco El Tigre\n\n"
+    "Presione Aceptar\n"
+    "para comenzar"
+    )
+
+    limpiar()
+ventana.mainloop()

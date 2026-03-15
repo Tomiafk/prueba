@@ -1,4 +1,3 @@
-#banking logic 
 import random
 import tkinter
 
@@ -324,28 +323,75 @@ def cajero_fin(iniciar):
             print("opcion invalida")
             iniciar = float(input())
 
+# -------- FUNCIONES PARA GUI --------
 
-pin = ""
-cuenta = 0
-if __name__ == "__main__":
-    print("Bienvenido al Banco del Tigre")
-    iniciar = float(input())
-    cajero_fin(iniciar) 
- 
-#adding function to connect Gui
+def obtener_saldos():
+    return {
+        "bs": saldo_bs,
+        "usd": saldo_dol,
+        "libras": saldo_libras,
+        "euro": saldo_euro
+    }
+
+
 def retirar_gui(moneda, monto):
     global saldo_bs, saldo_dol, saldo_libras, saldo_euro
 
-    if moneda == 1:
-        if monto <= saldo_bs:
-            saldo_bs -= monto
-            return "Retiro exitoso"
-        else:
-            return "Saldo insuficiente"
+    if monto < 0:
+        return "Monto no valido"
 
-    elif moneda == 2:
-        if monto <= saldo_dol:
-            saldo_dol -= monto
-            return "Retiro exitoso"
-        else:
+    if moneda == "bs":
+        if monto > saldo_bs:
             return "Saldo insuficiente"
+        saldo_bs -= monto
+
+    elif moneda == "usd":
+        if monto > saldo_dol:
+            return "Saldo insuficiente"
+        saldo_dol -= monto
+
+    elif moneda == "libras":
+        if monto > saldo_libras:
+            return "Saldo insuficiente"
+        saldo_libras -= monto
+
+    elif moneda == "euro":
+        if monto > saldo_euro:
+            return "Saldo insuficiente"
+        saldo_euro -= monto
+
+    return "Retiro exitoso"
+
+
+def depositar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto < 0:
+        return "Monto no valido"
+
+    if moneda == "bs":
+        saldo_bs += monto
+
+    elif moneda == "usd":
+        saldo_dol += monto
+
+    elif moneda == "libras":
+        saldo_libras += monto
+
+    elif moneda == "euro":
+        saldo_euro += monto
+
+    return "Deposito exitoso"
+
+
+# -------- ORIGINAL CODE --------
+
+pin = ""
+cuenta = 0
+
+if __name__ == "__main__":
+    print("Bienvenido al Banco del Tigre")
+    print("Presione 1 para iniciar")
+    print("Presiona 0 para cancelar")
+    iniciar = float(input())
+    cajero_fin(iniciar)
