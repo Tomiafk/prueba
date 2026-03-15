@@ -4,7 +4,8 @@ import tkinter
 saldo_bs = 1000
 saldo_dol = 0
 saldo_libras = 0
-saldo_euro = 0
+saldo_euro = 0 
+
 # Zona de Definiciones
 
 # Retiro

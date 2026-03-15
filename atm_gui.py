@@ -5,7 +5,7 @@ from banco_final import retirar_gui, depositar_gui, obtener_saldos
 
 ventana = tk.Tk()
 ventana.title("Banco El Tigre ATM")
-ventana.geometry("1000x900")
+ventana.geometry("100x900")
 ventana.configure(bg="#FFD100")   # strong yellow
 
 # ---------------- VARIABLES ----------------
@@ -20,9 +20,13 @@ pantalla = tk.Label(
     text="Bienvenido\nBanco El Tigre",
     bg="black",
     fg="#FFD100",
-    font=("Courier",16),
-    width=30,
-    height=6
+    font=("Courier",18,"bold"),
+    width=40,
+    height=10,
+    justify="right",
+    anchor="nw",
+    padx=15,
+    pady=15
 )
 
 pantalla.pack(pady=20)
@@ -94,11 +98,11 @@ def aceptar():
             operacion = "retiro"
 
             pantalla.config(text=
-            "Seleccione moneda:\n"
-            "1 Bolivianos\n"
-            "2 Dolares\n"
-            "3 Libras\n"
-            "4 Euro"
+            "Seleccione moneda\n\n"
+            "1  Bolivianos\n"
+            "2  Dolares\n"
+            "3  Libras\n"
+            "4  Euro"
             )
 
             estado = "moneda"
@@ -181,7 +185,7 @@ def aceptar():
 
         pantalla.config(text=
         mensaje + "\n\n"
-        "Otra transaccion?\n"
+        "Otra transaccion?\n\n"
         "1 Si\n"
         "2 No"
         )
@@ -264,13 +268,31 @@ tk.Button(
     command=limpiar
 ).pack()
 
-# ---------------- START SCREEN ----------------
 
-pantalla.config(text=
-"Banco El Tigre\n\n"
-"Presione Aceptar\n"
-"para comenzar"
+# ---------- START SCREEN FRAME ----------
+
+start_frame = tk.Frame(ventana, bg="#FFD100")
+start_frame.pack(pady=20)
+
+# Load logo
+logo = tk.PhotoImage(file="tigre_logo.png")
+
+logo_label = tk.Label(start_frame, image=logo, bg="#FFD100")
+logo_label.pack(side="left", padx=10)  
+logo_label.image = logo
+
+texto_inicio = tk.Label(
+    start_frame,
+    text="Banco El Tigre\n\nPresione Aceptar\npara comenzar",
+    bg="black",
+    fg="#FFD100",
+    font=("Courier New",18,"bold"),
+    width=20,
+    height=6,
+    justify="left"
 )
+
+texto_inicio.pack(side="right")
 
 # ---------------- RUN ----------------
 def reiniciar():
