@@ -5,7 +5,7 @@ from banco_final import retirar_gui, depositar_gui, obtener_saldos
 
 ventana = tk.Tk()
 ventana.title("Banco El Tigre ATM")
-ventana.geometry("1200x900")
+ventana.geometry("700x500")
 ventana.configure(bg="#FFD100")   # strong yellow
 
 # ---------------- VARIABLES ----------------
