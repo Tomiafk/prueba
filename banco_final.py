@@ -4,7 +4,8 @@ import tkinter
 saldo_bs = 1000
 saldo_dol = 0
 saldo_libras = 0
-saldo_euro = 0
+saldo_euro = 0 
+
 # Zona de Definiciones
 
 # Retiro
@@ -327,11 +328,75 @@ def cajero_fin(iniciar):
             print("opcion invalida")
             iniciar = float(input())
 
+# -------- FUNCIONES PARA GUI --------
+
+def obtener_saldos():
+    return {
+        "bs": saldo_bs,
+        "usd": saldo_dol,
+        "libras": saldo_libras,
+        "euro": saldo_euro
+    }
+
+
+def retirar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto < 0:
+        return "Monto no valido"
+
+    if moneda == "bs":
+        if monto > saldo_bs:
+            return "Saldo insuficiente"
+        saldo_bs -= monto
+
+    elif moneda == "usd":
+        if monto > saldo_dol:
+            return "Saldo insuficiente"
+        saldo_dol -= monto
+
+    elif moneda == "libras":
+        if monto > saldo_libras:
+            return "Saldo insuficiente"
+        saldo_libras -= monto
+
+    elif moneda == "euro":
+        if monto > saldo_euro:
+            return "Saldo insuficiente"
+        saldo_euro -= monto
+
+    return "Retiro exitoso"
+
+
+def depositar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto < 0:
+        return "Monto no valido"
+
+    if moneda == "bs":
+        saldo_bs += monto
+
+    elif moneda == "usd":
+        saldo_dol += monto
+
+    elif moneda == "libras":
+        saldo_libras += monto
+
+    elif moneda == "euro":
+        saldo_euro += monto
+
+    return "Deposito exitoso"
+
+
+# -------- ORIGINAL CODE --------
 
 pin = ""
 cuenta = 0
-print("Bienvenido al Banco del Tigre")
-print("Presione 1 para iniciar")
-print("Presiona 0 para cancelar")
-iniciar = float(input())
-cajero_fin(iniciar)
+
+if __name__ == "__main__":
+    print("Bienvenido al Banco del Tigre")
+    print("Presione 1 para iniciar")
+    print("Presiona 0 para cancelar")
+    iniciar = float(input())
+    cajero_fin(iniciar)
