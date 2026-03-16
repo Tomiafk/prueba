@@ -1,10 +1,11 @@
-#import random
-#import tkinter
+import random
+import tkinter
 
 saldo_bs = 1000
 saldo_dol = 0
 saldo_libras = 0
-saldo_euro = 0
+saldo_euro = 0 
+
 # Zona de Definiciones
 
 # Retiro
@@ -21,20 +22,32 @@ def retiro(opcion):
         if saldo_a_retirar < 0:
             print("Monto no valido")
         if op_retiro == 1:
-            saldo_bs = saldo_bs - saldo_a_retirar
-            break
+            if saldo_a_retirar > saldo_bs:
+                print("Saldo Insuficiente")
+            else:
+                saldo_bs = saldo_bs - saldo_a_retirar
+                break
         elif op_retiro == 2:
-            saldo_dol = saldo_dol - saldo_a_retirar
-            break
+            if saldo_a_retirar > saldo_dol:
+                print("Saldo Insuficiente")
+            else:
+                saldo_dol = saldo_dol - saldo_a_retirar
+                break
         elif op_retiro == 3:
-            saldo_libras = saldo_libras - saldo_a_retirar
-            break
+            if saldo_a_retirar > saldo_libras:
+                print("Saldo Insuficiente")
+            else:
+                saldo_libras = saldo_libras - saldo_a_retirar
+                break
         elif op_retiro == 4:
-            saldo_euro = saldo_euro - saldo_a_retirar
-            break
+            if saldo_a_retirar > saldo_euro:
+                print("Saldo Insuficiente")
+            else:
+                saldo_euro = saldo_euro - saldo_a_retirar
+                break
         else:
             print("Opcion no valida")
-    confirmacion_salir()
+    return confirmacion_salir()
 
 # Deposito
 def deposito(opcion):
@@ -45,18 +58,25 @@ def deposito(opcion):
     print("3. Libras esterlinas")
     print("4. Euro")
     op_deposito = float(input())
-    saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
-    if op_deposito == 1:
-        saldo_bs = saldo_bs + saldo_a_depositar
-    elif op_deposito == 2:
-        saldo_dol = saldo_dol + saldo_a_depositar
-    elif op_deposito == 3:
-        saldo_libras = saldo_libras + saldo_a_depositar
-    elif op_deposito == 4:
-        saldo_euro = saldo_euro + saldo_a_depositar
-    else:
-        print("Opcion no valida")
-    confirmacion_salir()
+    while True:
+        saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
+        if saldo_a_depositar < 0:
+            print("Opcion no valida")
+        if op_deposito == 1:
+            saldo_bs = saldo_bs + saldo_a_depositar
+            break
+        elif op_deposito == 2:
+            saldo_dol = saldo_dol + saldo_a_depositar
+            break
+        elif op_deposito == 3:
+            saldo_libras = saldo_libras + saldo_a_depositar
+            break
+        elif op_deposito == 4:
+            saldo_euro = saldo_euro + saldo_a_depositar
+            break
+        else:
+            print("Opcion no valida")
+    return confirmacion_salir()
 
 # Consulta de Saldo
 def consulta_saldo(opcion):
@@ -65,7 +85,7 @@ def consulta_saldo(opcion):
     print("Tu saldo en Dolares es: ", round(saldo_dol, 2))
     print("Tu saldo en Libras esterlinas es: ", round(saldo_libras, 2))
     print("Tu saldo en Euro es: ", round(saldo_euro, 2))
-    confirmacion_salir()
+    return confirmacion_salir()
 
 # Cambio de moneda
 def cambio_moneda(opcion):
@@ -161,31 +181,17 @@ def cambio_moneda(opcion):
                 print("Opcion no valida")
         else:
             print("Sin saldo suficiente")
-    confirmacion_salir()
+    return confirmacion_salir()
 
 
 
 # Informacion de la cuenta
 def info_cuenta(opcion):
     global saldo_bs, saldo_dol, saldo_libras, saldo_euro
-    print("Informacion de tu cuenta: ")
-    print("Banco del Tigre")
-    print("Pin: ****")
-    if cuenta == 1:
-        print("Tipo de cuenta: Caja de Ahorro")
-    elif cuenta == 2:
-        print("Tipo de cuenta: Cuenta Corriente")
-    elif cuenta == 0:
-        print("Tipo de cuenta: Extranjero")
-
-    print("Desea revelar el pin? ")
-    print("Y o N")
-
-    pin_revelar = input()
-    if pin_revelar == "Y":
+    while True:
         print("Informacion de tu cuenta: ")
         print("Banco del Tigre")
-        print("Pin: ",pin)
+        print("Pin: ****")
         if cuenta == 1:
             print("Tipo de cuenta: Caja de Ahorro")
         elif cuenta == 2:
@@ -193,11 +199,28 @@ def info_cuenta(opcion):
         elif cuenta == 0:
             print("Tipo de cuenta: Extranjero")
 
-    elif pin_revelar == "N":
-        print("")
-    else:
-        print("Opcion no valida")
-    confirmacion_salir()
+        print("Desea revelar el pin? ")
+        print("Y o N")
+
+        pin_revelar = input()
+        if pin_revelar == "Y":
+            print("Informacion de tu cuenta: ")
+            print("Banco del Tigre")
+            print("Pin: ",pin)
+            if cuenta == 1:
+                print("Tipo de cuenta: Caja de Ahorro")
+            elif cuenta == 2:
+                print("Tipo de cuenta: Cuenta Corriente")
+            elif cuenta == 0:
+                print("Tipo de cuenta: Extranjero")
+            break
+
+        elif pin_revelar == "N":
+            print("")
+            break
+        else:
+            print("Opcion no valida")
+    return confirmacion_salir()
 
 # Salir
 def salir(opcion):
@@ -206,11 +229,12 @@ def salir(opcion):
     seguro_salir = input()
     if seguro_salir == "Y":
         print("Muchas gracias por usar nuestro servicio :3")
-        return
+        return True
     elif seguro_salir == "N":
-        print("")
+        return False
     else:
         print("Opcion no valida")
+        return False
 
 # Confirmacion salir
 def confirmacion_salir():
@@ -222,15 +246,16 @@ def confirmacion_salir():
         fin = input()
         if fin == "Y":
             print("Muchas gracias por usar nuestro servicio :3")
-            return False
+            return True
         elif fin == "N":
-            print("")
+            return False
         else:
             print("Opcion no valida")
     elif fin_trans == "Y":
         print("")
     else:
         print("Opcion no valida")
+        return False
 
 
 
@@ -259,23 +284,28 @@ def cajero_fin(iniciar):
                     print("5  Informacion de cuenta")
                     print("6  Salir")
                 elif opcion == 1:
-                    retiro(opcion)
-                    
+                    if retiro(opcion):
+                        return
+
                 elif opcion == 2:
-                    deposito(opcion)
-                    
+                    if deposito(opcion):
+                        return
+                   
                 elif opcion == 3:
-                    consulta_saldo(opcion)
+                    if consulta_saldo(opcion):
+                        return
 
                 elif opcion == 4:
-                    cambio_moneda(opcion)
+                    if cambio_moneda(opcion):
+                        return
                     
                 elif opcion == 5:
-                    info_cuenta(opcion)
+                    if info_cuenta(opcion):
+                        return
                     
                 elif opcion == 6:
-                    salir(opcion)
-                    
+                    if salir(opcion):
+                        return
                 else:
                     print("Opcion no valida")
 
@@ -294,11 +324,75 @@ def cajero_fin(iniciar):
             print("opcion invalida")
             iniciar = float(input())
 
+# -------- FUNCIONES PARA GUI --------
+
+def obtener_saldos():
+    return {
+        "bs": saldo_bs,
+        "usd": saldo_dol,
+        "libras": saldo_libras,
+        "euro": saldo_euro
+    }
+
+
+def retirar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto < 0:
+        return "Monto no valido"
+
+    if moneda == "bs":
+        if monto > saldo_bs:
+            return "Saldo insuficiente"
+        saldo_bs -= monto
+
+    elif moneda == "usd":
+        if monto > saldo_dol:
+            return "Saldo insuficiente"
+        saldo_dol -= monto
+
+    elif moneda == "libras":
+        if monto > saldo_libras:
+            return "Saldo insuficiente"
+        saldo_libras -= monto
+
+    elif moneda == "euro":
+        if monto > saldo_euro:
+            return "Saldo insuficiente"
+        saldo_euro -= monto
+
+    return "Retiro exitoso"
+
+
+def depositar_gui(moneda, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto < 0:
+        return "Monto no valido"
+
+    if moneda == "bs":
+        saldo_bs += monto
+
+    elif moneda == "usd":
+        saldo_dol += monto
+
+    elif moneda == "libras":
+        saldo_libras += monto
+
+    elif moneda == "euro":
+        saldo_euro += monto
+
+    return "Deposito exitoso"
+
+
+# -------- ORIGINAL CODE --------
 
 pin = ""
 cuenta = 0
-print("Bienvenido al Banco del Tigre")
-print("Presione 1 para iniciar")
-print("Presiona 0 para cancelar")
-iniciar = float(input())
-cajero_fin(iniciar)
+
+if __name__ == "__main__":
+    print("Bienvenido al Banco del Tigre")
+    print("Presione 1 para iniciar")
+    print("Presiona 0 para cancelar")
+    iniciar = float(input())
+    cajero_fin(iniciar)
