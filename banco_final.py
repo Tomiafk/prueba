@@ -263,7 +263,7 @@ def cajero_fin(iniciar):
     global pin, cuenta
     while True:
         if iniciar == 1:
-            pin = int(input("Ingrese su pin de 4 digitos: "))
+            pin = input("Ingrese su pin de 4 digitos: ")
             pin = str(pin)
             if len(pin) == 4:
                 print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(0)")
