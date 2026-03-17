@@ -1,19 +1,19 @@
 import tkinter as tk
 from banco_final import retirar_gui, depositar_gui, obtener_saldos
 
-# ---------------- WINDOW ----------------
+# WINDOW
 
 ventana = tk.Tk()
 ventana.title("Banco El Tigre ATM")
 ventana.geometry("100x900")
-ventana.configure(bg="#FFD100")   # strong yellow
+ventana.configure(bg="#FFD100") # Amarillo
 
-# ---------------- VARIABLES ----------------
+# VARIABLES
 
 numero_ingresado = ""
 estado = "inicio"
 
-# ---------------- SCREEN ----------------
+# SCREEN
 
 pantalla = tk.Label(
     ventana,
@@ -31,7 +31,7 @@ pantalla = tk.Label(
 
 pantalla.pack(pady=20)
 
-# ---------------- TIGER LOGO ----------------
+# TIGER LOGO
 
 try:
     logo = tk.PhotoImage(file="tigre_logo.png")
@@ -40,7 +40,7 @@ try:
 except:
     pass
 
-# ---------------- ENTRY DISPLAY ----------------
+# ENTRY DISPLAY
 
 entrada = tk.Label(
     ventana,
@@ -53,8 +53,7 @@ entrada = tk.Label(
 
 entrada.pack(pady=10)
 
-# ---------------- FUNCTIONS ----------------
-
+# FUNCTIONS
 def presionar(num):
     global numero_ingresado
     numero_ingresado += str(num)
@@ -74,7 +73,7 @@ def aceptar():
     global operacion
     global moneda
 
-    # ---------- START ----------
+    # START
     if estado == "inicio":
 
         pantalla.config(text=
@@ -90,7 +89,7 @@ def aceptar():
         return
 
 
-    # ---------- MENU ----------
+    #  MENU
     if estado == "menu":
 
         if numero_ingresado == "1":
@@ -150,7 +149,7 @@ def aceptar():
         return
 
 
-    # ---------- MONEDA ----------
+    # MONEDA
     if estado == "moneda":
 
         if numero_ingresado == "1":
@@ -172,7 +171,7 @@ def aceptar():
         return
 
 
-    # ---------- MONTO ----------
+    # MONTO
     if estado == "monto":
 
         monto = float(numero_ingresado)
@@ -195,7 +194,7 @@ def aceptar():
         return
 
 
-    # ---------- OTRA TRANSACCION ----------
+    # OTRA TRANSACCION
     if estado == "otra":
 
         if numero_ingresado == "1":
@@ -221,7 +220,7 @@ def aceptar():
 
         limpiar()
 
-# ---------------- KEYPAD ----------------
+# KEYPAD
 
 frame_teclado = tk.Frame(ventana,bg="#FFD100")
 frame_teclado.pack()
@@ -248,7 +247,7 @@ for (num,r,c) in numeros:
     boton.grid(row=r,column=c,padx=5,pady=5)
 
 
-# ---------------- CONTROL BUTTONS ----------------
+# CONTROL BUTTONS
 
 tk.Button(
     ventana,
@@ -269,7 +268,7 @@ tk.Button(
 ).pack()
 
 
-# ---------- START SCREEN FRAME ----------
+# START SCREEN FRAME
 
 start_frame = tk.Frame(ventana, bg="#FFD100")
 start_frame.pack(pady=20)
@@ -294,7 +293,7 @@ texto_inicio = tk.Label(
 
 texto_inicio.pack(side="right")
 
-# ---------------- RUN ----------------
+# RUN
 def reiniciar():
 
     global estado
