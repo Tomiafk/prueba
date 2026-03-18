@@ -16,49 +16,42 @@ def retiro(opcion):
     print("2. Dolares")
     print("3. Libras esterlinas")
     print("4. Euro")
-    try:
-        op_retiro = int(input())
-    except:
-        print("Opcion invalida")
-        return
+    op_retiro = float(input())
     while True:
-        saldo_a_retirar = int(input("Ingresa saldo a retirar: "))
+        saldo_a_retirar = float(input("Ingresa saldo a retirar: "))
         if saldo_a_retirar <= 0:
             print("Monto no valido")
-            continue
         if op_retiro == 1:
             if saldo_a_retirar > saldo_bs:
                 print("Saldo Insuficiente")
+                print("Saldo actual:", saldo_bs)
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
-                print("Transaccion exitosa")
-                
-                print("Revisar consulta de saldo")
+                print("Saldo actual:", saldo_bs)
                 break
-            
         elif op_retiro == 2:
             if saldo_a_retirar > saldo_dol:
                 print("Saldo Insuficiente")
+                print("Saldo actual:", saldo_dol)
             else:
                 saldo_dol = saldo_dol - saldo_a_retirar
-                print("Transaccion exitosa")
-                print("Saldo actual:")
+                print("Saldo actual:", saldo_dol)
                 break
         elif op_retiro == 3:
             if saldo_a_retirar > saldo_libras:
                 print("Saldo Insuficiente")
+                print("Saldo actual:", saldo_libras)
             else:
                 saldo_libras = saldo_libras - saldo_a_retirar
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                print("Saldo actual:", saldo_libras)
                 break
         elif op_retiro == 4:
             if saldo_a_retirar > saldo_euro:
                 print("Saldo Insuficiente")
+                print("Saldo actual:", saldo_euro)
             else:
                 saldo_euro = saldo_euro - saldo_a_retirar
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                print("Saldo actual:", saldo_euro)
                 break
         else:
             print("Opcion no valida")
@@ -72,59 +65,22 @@ def deposito(opcion):
     print("2. Dolares")
     print("3. Libras esterlinas")
     print("4. Euro")
-    
+    op_deposito = float(input())
     while True:
-        try:
-            op_deposito = int(input())
-
-            if 1 <= op_deposito <= 4:
-                break
-            else:
-                print("Opcion invalida")
-
-        except:
-            print("Entrada invalida")
-
-
-    while True:
-        try:
-            saldo_a_depositar = int(input("Ingresa saldo a depositar: "))
-
-            if saldo_a_depositar <= 0:
-                print("Monto invalido")
-                continue
-
-            if saldo_a_depositar % 10 != 0:
-                print("Solo montos en decenas (10, 20, 30...)")
-                continue
-
-            break
-
-        except:
-            print("Entrada invalida")
- 
-    while True:
+        saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
         if saldo_a_depositar <= 0:
             print("Opcion no valida")
         if op_deposito == 1:
             saldo_bs = saldo_bs + saldo_a_depositar
-            print("Transaccion exitosa")
-            print("Saldo actual: ", saldo_bs)
             break
         elif op_deposito == 2:
             saldo_dol = saldo_dol + saldo_a_depositar
-            print("Transaccion exitosa")
-            print("Saldo actual: ", saldo_dol)
             break
         elif op_deposito == 3:
             saldo_libras = saldo_libras + saldo_a_depositar
-            print("Transaccion exitosa")
-            print("Saldo actual: ", saldo_dol)
             break
         elif op_deposito == 4:
             saldo_euro = saldo_euro + saldo_a_depositar
-            print("Transaccion exitosa")
-            print("Saldo actual: ", saldo_euro)
             break
         else:
             print("Opcion no valida")
@@ -147,68 +103,24 @@ def cambio_moneda(opcion):
     print("2. Dolares")
     print("3. Libras esterlinas")
     print("4. Euro")
-    while True:
-        try:
-            tipo_moneda = int(input())
-
-            if 1 <= tipo_moneda <= 4:
-                break
-            else:
-                print("Opcion invalida")
-
-        except:
-            print("Entrada invalida")
-
-   
+    tipo_moneda = float(input())
     if tipo_moneda == 1:
         print("Selecciona el tipo de cambio: ")
         print("1. Dolares")
         print("2. Libras esterlinas")
         print("3. Euro")
-        while True:
-            try:
-                tipo_cambio = int(input())
-
-                if 1 <= tipo_cambio <= 3:
-                    break
-                else:
-                    print("Opcion invalida")
-
-            except:
-                print("Entrada invalida")
-
-        while True:
-            try:
-                monto_convertir = int(input("Ingresa monto a convertir: "))
-
-                if monto_convertir <= 0:
-                    print("Monto invalido")
-                    continue
-                if monto_convertir % 10 != 0:
-                    print("Solo se permiten montos en decenas y centenas (10, 20, 30, 100...)")
-                    continue
-
-                break
-
-            except:
-                print("Entrada invalida")
-
+        tipo_cambio = float(input())
+        monto_convertir = float(input("Ingresa monto a convertir: "))
         if monto_convertir <= saldo_bs:
             if tipo_cambio == 1:
                 saldo_bs = saldo_bs - monto_convertir
-                saldo_dol += round((monto_convertir / 6.96), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_dol = round((monto_convertir / 6.96), 2)
             elif tipo_cambio == 2:
                 saldo_bs = saldo_bs - monto_convertir
-                saldo_libras += round((monto_convertir / 9.20), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_libras = round((monto_convertir / 9.20), 2)
             elif tipo_cambio == 3:
                 saldo_bs = saldo_bs - monto_convertir
-                saldo_euro += round((monto_convertir / 7.99), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_euro = round((monto_convertir / 7.99), 2)
             else:
                 print("Opcion no valida")
         else:
@@ -218,104 +130,39 @@ def cambio_moneda(opcion):
         print("1. Bolivianos")
         print("2. Libras esterlinas")
         print("3. Euro")
-        while True:
-            try:
-                tipo_cambio = int(input())
-
-                if 1 <= tipo_cambio <= 3:
-                    break
-                else:
-                    print("Opcion invalida")
-
-            except:
-                print("Entrada invalida")
-
-        while True:
-            try:
-                monto_convertir = int(input("Ingresa monto a convertir: "))
-
-                if monto_convertir <= 0:
-                    print("Monto invalido")
-                    continue
-                if monto_convertir % 10 != 0:
-                    print("Solo se permiten montos en decenas y centenas (10, 20, 30, 100...)")
-                    continue
-
-                break
-
-            except:
-                print("Entrada invalida")
-
+        tipo_cambio = float(input())
+        monto_convertir = float(input("Ingresa monto a convertir: "))
         if monto_convertir <= saldo_dol:
             if tipo_cambio == 1:
                 saldo_dol = saldo_dol - monto_convertir
-                saldo_bs += round((monto_convertir * 6.96) ,2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_bs = round((monto_convertir * 6.96) ,2)
             elif tipo_cambio == 2:
                 saldo_dol = saldo_dol - monto_convertir
-                saldo_libras += round((monto_convertir / 1.33), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_libras = round((monto_convertir / 1.33), 2)
             elif tipo_cambio == 3:
                 saldo_dol = saldo_dol - monto_convertir
-                saldo_euro += round((monto_convertir / 1.16), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_euro = round((monto_convertir / 1.16), 2)
             else:
                 print("Opcion no valida")
         else:
             print("Sin saldo suficiente")
-            
     elif tipo_moneda == 3:
         print("Selecciona el tipo de cambio: ")
         print("1. Bolivianos")
         print("2. Dolares")
         print("3. Euro")
-        while True:
-            try:
-                tipo_cambio = int(input())
-
-                if 1 <= tipo_cambio <= 3:
-                    break
-                else:
-                    print("Opcion invalida")
-
-            except:
-                print("Entrada invalida")
-
-        while True:
-            try:
-                monto_convertir = int(input("Ingresa monto a convertir: "))
-
-                if monto_convertir <= 0:
-                    print("Monto invalido")
-                    continue
-                if monto_convertir % 10 != 0:
-                    print("Solo se permiten montos en decenas y centenas (10, 20, 30, 100...)")
-                    continue
-
-                break
-
-            except:
-                print("Entrada invalida")
-
+        tipo_cambio = float(input())
+        monto_convertir = float(input("Ingresa monto a convertir: "))
         if monto_convertir <= saldo_libras:
             if tipo_cambio == 1:
                 saldo_libras = saldo_libras - monto_convertir
-                saldo_bs += round((monto_convertir * 9.20), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_bs = round((monto_convertir * 9.20), 2)
             elif tipo_cambio == 2:
                 saldo_libras = saldo_libras - monto_convertir
-                saldo_dol += round((monto_convertir * 1.33), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_dol = round((monto_convertir * 1.33), 2)
             elif tipo_cambio == 3:
                 saldo_libras = saldo_libras - monto_convertir
-                saldo_euro += round((monto_convertir * 1.15), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_euro = round((monto_convertir * 1.15), 2)
             else:
                 print("Opcion no valida")
         else:
@@ -326,50 +173,18 @@ def cambio_moneda(opcion):
         print("1. Bolivianos")
         print("2. Dolares")
         print("3. Libras esterlinas")
-        while True:
-            try:
-                tipo_cambio = int(input())
-
-                if 1 <= tipo_cambio <= 3:
-                    break
-                else:
-                    print("Opcion invalida")
-
-            except:
-                print("Entrada invalida")
-
-        while True:
-            try:
-                monto_convertir = int(input("Ingresa monto a convertir: "))
-
-                if monto_convertir <= 0:
-                    print("Monto invalido")
-                    continue
-                if monto_convertir % 10 != 0:
-                    print("Solo se permiten montos en decenas y centenas (10, 20, 30, 100...)")
-                    continue
-
-                break
-
-            except:
-                print("Entrada invalida")
-
+        tipo_cambio = float(input())
+        monto_convertir = float(input("Ingresa monto a convertir: "))
         if monto_convertir <= saldo_euro:
             if tipo_cambio == 1:
                 saldo_euro = saldo_euro - monto_convertir
-                saldo_bs += round((monto_convertir * 7.99), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_bs = round((monto_convertir * 7.99), 2)
             elif tipo_cambio == 2:
                 saldo_euro = saldo_euro - monto_convertir
-                saldo_dol += round((monto_convertir * 1.16), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_dol = round((monto_convertir * 1.16), 2)
             elif tipo_cambio == 3:
                 saldo_euro = saldo_euro - monto_convertir
-                saldo_libras += round((monto_convertir / 1.15), 2)
-                print("Transaccion exitosa")
-                print("Revisar consulta de saldo")
+                saldo_libras = round((monto_convertir / 1.15), 2)
             else:
                 print("Opcion no valida")
         else:
@@ -424,129 +239,94 @@ def salir(opcion):
         if seguro_salir == "Y":
             print("Muchas gracias por usar nuestro servicio :3")
             return True
+            break
         elif seguro_salir == "N":
             return False
+            break
         else:
             print("Opcion no valida")
-        
+            print("Esta seguro? ")
+            print("Y o N")
+            saalir_fin = input()
 
 # Confirmacion salir
 def confirmacion_salir():
     while True:
-        print("Desea hacer otra transaccion?")
+        print("Desea hacer otra transaccion? ")
         print("Y o N")
         fin_trans = input()
-
-        if fin_trans == "Y":
-            return False
-
-        elif fin_trans == "N":
-            while True:
-                print("Esta seguro?")
-                print("Y o N")
-                fin = input()
-
-                if fin == "Y":
-                    print("Muchas gracias por usar nuestro servicio :3")
-                    return True
-                
-                elif fin == "N":
-                    break
-                else:
-                    print("Opcion no valida")
-
+        if fin_trans == "N":
+            print("Esta seguro? ")
+            fin = input()
+            if fin == "Y":
+                print("Muchas gracias por usar nuestro servicio :3")
+                return True
+                break
+            elif fin == "N":
+                return False
+                break
+            else:
+                print("Opcion no valida")
+        elif fin_trans == "Y":
+            print("")
+            break
         else:
             print("Opcion no valida")
 
-#pin
+
+
 
 def cajero_fin(iniciar):
     global pin, cuenta
     while True:
-        if iniciar == 1: 
-            intentos = 3
+        if iniciar == 1:
+            pin = input("Ingrese su pin de 4 digitos: ")
+            pin = str(pin)
+            if len(pin) == 4:
+                print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(3)")
+                cuenta = float(input())
+                if cuenta == 3 or cuenta == 2 or cuenta == 1:    
+                    while True:
+                        opcion = float(input("Ingresa una opcion (0 para help): "))
+                        if opcion == 0:
+                            print("Las opciones son:")
+                            print("1  Retiro")
+                            print("2  Deposito")
+                            print("3  Consulta (Consulta de saldo)")
+                            print("4  Cambio de moneda")
+                            print("5  Informacion de cuenta")
+                            print("6  Salir")
+                        elif opcion == 1:
+                            if retiro(opcion):
+                                return
 
-            while intentos > 0:
-                pin = input("Ingrese su pin de 4 digitos: ")
+                        elif opcion == 2:
+                            if deposito(opcion):
+                                return
+                           
+                        elif opcion == 3:
+                            if consulta_saldo(opcion):
+                                return
 
-                try:
-                    int(pin)
-
-                    if len(pin) == 4:
-                        print("PIN correcto")
-                        while True:
-                            print("Ingrese su tipo de cuenta:")
-                            print("Caja de Ahorro (1)")
-                            print("Cuenta Corriente (2)")
-                            print("Extranjero (0)")
-
-                            try:
-                                cuenta = int(input())
-
-                                if cuenta in (0, 1, 2):
-                                    break
-                                else:
-                                    print("Opcion invalida")
-
-                            except:
-                                print("Entrada invalida")
-
-                       
-                        break
-                    else:
-                        print("Pin invalido")
-
-                except:
-                    print("Pin invalido")
-
-                intentos -= 1
-
-                if intentos == 0:
-                    print("Demasiados intentos fallidos")
-                    print("Usted no es propietario de esta cuenta")
-                    return
-
-
-            while True:
-                try:
-                    opcion = int(input("Ingresa una opcion (0 para help): "))
-                except:
-                    print("Entrada invalida")
-                    continue
-                
-                if opcion == 0:
-                    print("Las opciones son:")
-                    print("1  Retiro")
-                    print("2  Deposito")
-                    print("3  Consulta (Consulta de saldo)")
-                    print("4  Cambio de moneda")
-                    print("5  Informacion de cuenta")
-                    print("6  Salir")
-                elif opcion == 1:
-                    if retiro(opcion):
-                        return
-
-                elif opcion == 2:
-                    if deposito(opcion):
-                        return
-                   
-                elif opcion == 3:
-                    if consulta_saldo(opcion):
-                        return
-
-                elif opcion == 4:
-                    if cambio_moneda(opcion):
-                        return
-                    
-                elif opcion == 5:
-                    if info_cuenta(opcion):
-                        return
-                    
-                elif opcion == 6:
-                    if salir(opcion):
-                        return
+                        elif opcion == 4:
+                            if cambio_moneda(opcion):
+                                return
+                            
+                        elif opcion == 5:
+                            if info_cuenta(opcion):
+                                return
+                            
+                        elif opcion == 6:
+                            if salir(opcion):
+                                return
+                        else:
+                            print("Opcion no valida")
                 else:
-                    print("Opcion no valida")
+                    print("Cuenta no valida")
+            else:
+                print("Pin invalido")
+                print("Usted no es el propietario de esta cuenta")
+                break
 
         elif iniciar == 0:
             print("Esta seguro? ")
@@ -565,13 +345,9 @@ def cajero_fin(iniciar):
                 print("Opcion no valida")
         else:
             print("opcion invalida")
-            try:
-                iniciar = int(input())
-            except:
-                print("Entrada invalida")
-                return
+            iniciar = float(input())
 
-# -------- FUNCIONES PARA GUI --------
+# FUNCIONES PARA GUI
 
 def obtener_saldos():
     return {
@@ -630,10 +406,55 @@ def depositar_gui(moneda, monto):
         saldo_euro += monto
 
     return "Deposito exitoso"
+def convertir_gui(origen, destino, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
+
+    if monto <= 0:
+        return "Monto no valido"
 
 
-# -------- ORIGINAL CODE --------
+# ORIGINAL CODE
 
+    tasas = {("bs","usd"): 1/6.96,("bs","libras"): 1/9.20,("bs","euro"): 1/7.99,("usd","bs"): 6.96,("usd","libras"): 1/1.33,("usd","euro"): 1/1.16,("libras","bs"): 9.20,("libras","usd"): 1.33,("libras","euro"): 1.15,("euro","bs"): 7.99,("euro","usd"): 1.16,("euro","libras"): 1/1.15}
+
+
+    if origen == destino:
+        return "Monedas iguales"
+
+    if (origen, destino) not in tasas:
+        return "Conversion no valida"
+
+    # verificar saldo
+    saldos = {"bs": saldo_bs,"usd": saldo_dol,"libras": saldo_libras,"euro": saldo_euro}
+
+    if monto > saldos[origen]:
+        return "Saldo insuficiente"
+
+    convertido = round(monto * tasas[(origen, destino)], 2)
+
+    # restar origen
+    if origen == "bs":
+        saldo_bs -= monto
+    elif origen == "usd":
+        saldo_dol -= monto
+    elif origen == "libras":
+        saldo_libras -= monto
+    elif origen == "euro":
+        saldo_euro -= monto
+
+    # sumar destino
+    if destino == "bs":
+        saldo_bs += convertido
+    elif destino == "usd":
+        saldo_dol += convertido
+    elif destino == "libras":
+        saldo_libras += convertido
+    elif destino == "euro":
+        saldo_euro += convertido
+
+    return f"Convertido: {convertido} {destino.upper()}"
+
+#ORIGINAL CODE //////////
 pin = ""
 cuenta = 0
 
@@ -641,16 +462,5 @@ if __name__ == "__main__":
     print("Bienvenido al Banco del Tigre")
     print("Presione 1 para iniciar")
     print("Presiona 0 para cancelar")
-
-    while True:
-        try:
-            iniciar = int(input())
-            if iniciar == 1 or iniciar == 0:
-                break
-            else:
-                print("Opcion invalida")
-        except:
-            print("Entrada invalida")
-
+    iniciar =float(input())
     cajero_fin(iniciar)
-
