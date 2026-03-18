@@ -250,12 +250,7 @@ def aceptar():
 frame_teclado = tk.Frame(ventana,bg="#FFD100")
 frame_teclado.pack()
 #use of tuplas>?? check.....
-numeros = [
-(1,0,0),(2,0,1),(3,0,2),
-(4,1,0),(5,1,1),(6,1,2),
-(7,2,0),(8,2,1),(9,2,2),
-(0,3,1)
-]
+numeros = [(1,0,0),(2,0,1),(3,0,2),(4,1,0),(5,1,1),(6,1,2),(7,2,0),(8,2,1),(9,2,2),(0,3,1)]
 
 for (num,r,c) in numeros:
 
