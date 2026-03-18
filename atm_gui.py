@@ -265,7 +265,7 @@ tk.Button(
     bg="black",
     fg="#FFD100",
     width=15,
-    command=limpiar
+    command=limpiars
 ).pack()
 
 # ---------------- START SCREEN ----------------
