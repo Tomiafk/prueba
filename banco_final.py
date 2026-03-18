@@ -24,34 +24,34 @@ def retiro(opcion):
         if op_retiro == 1:
             if saldo_a_retirar > saldo_bs:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_bs)
+                print("Saldo actual en Bolivianos:", saldo_bs)
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
-                print("Saldo actual:", saldo_bs)
+                print("Saldo actual en Bolivianos:", saldo_bs)
                 break
         elif op_retiro == 2:
             if saldo_a_retirar > saldo_dol:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_dol)
+                print("Saldo actual en Dolares:", saldo_dol)
             else:
                 saldo_dol = saldo_dol - saldo_a_retirar
-                print("Saldo actual:", saldo_dol)
+                print("Saldo actual en Dolares:", saldo_dol)
                 break
         elif op_retiro == 3:
             if saldo_a_retirar > saldo_libras:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_libras)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
             else:
                 saldo_libras = saldo_libras - saldo_a_retirar
-                print("Saldo actual:", saldo_libras)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
         elif op_retiro == 4:
             if saldo_a_retirar > saldo_euro:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_euro)
+                print("Saldo actual en Euros:", saldo_euro)
             else:
                 saldo_euro = saldo_euro - saldo_a_retirar
-                print("Saldo actual:", saldo_euro)
+                print("Saldo actual en Euros:", saldo_euro)
                 break
         else:
             print("Opcion no valida")
@@ -72,15 +72,19 @@ def deposito(opcion):
             print("Opcion no valida")
         if op_deposito == 1:
             saldo_bs = saldo_bs + saldo_a_depositar
+            print("Saldo actual en Bolivianos:", saldo_bs)
             break
         elif op_deposito == 2:
             saldo_dol = saldo_dol + saldo_a_depositar
+            print("Saldo actual en Dolares:", saldo_dol)
             break
         elif op_deposito == 3:
             saldo_libras = saldo_libras + saldo_a_depositar
+            print("Saldo actual en Libras esterlinas:", saldo_libras)
             break
         elif op_deposito == 4:
             saldo_euro = saldo_euro + saldo_a_depositar
+            print("Saldo actual en Euros:", saldo_euro)
             break
         else:
             print("Opcion no valida")
@@ -115,12 +119,18 @@ def cambio_moneda(opcion):
             if tipo_cambio == 1:
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_dol = round((monto_convertir / 6.96), 2)
+                print("Saldo actual en Bolivianos:", saldo_bs)
+                print("Saldo actual en Dolares:", saldo_dol)
             elif tipo_cambio == 2:
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_libras = round((monto_convertir / 9.20), 2)
+                print("Saldo actual en Bolivianos:", saldo_bs)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
             elif tipo_cambio == 3:
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_euro = round((monto_convertir / 7.99), 2)
+                print("Saldo actual en Bolivianos:", saldo_bs)
+                print("Saldo actual en Euros:", saldo_euro)
             else:
                 print("Opcion no valida")
         else:
@@ -136,12 +146,18 @@ def cambio_moneda(opcion):
             if tipo_cambio == 1:
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_bs = round((monto_convertir * 6.96) ,2)
+                print("Saldo actual en Dolares:", saldo_dol)
+                print("Saldo actual en Bolivianos:", saldo_bs)
             elif tipo_cambio == 2:
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_libras = round((monto_convertir / 1.33), 2)
+                print("Saldo actual en Dolares:", saldo_dol)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
             elif tipo_cambio == 3:
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_euro = round((monto_convertir / 1.16), 2)
+                print("Saldo actual en Dolares:", saldo_dol)
+                print("Saldo actual en Euros:", saldo_euro)
             else:
                 print("Opcion no valida")
         else:
@@ -157,12 +173,18 @@ def cambio_moneda(opcion):
             if tipo_cambio == 1:
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_bs = round((monto_convertir * 9.20), 2)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
+                print("Saldo actual en Bolivianos:", saldo_bs)
             elif tipo_cambio == 2:
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_dol = round((monto_convertir * 1.33), 2)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
+                print("Saldo actual en Dolares:", saldo_dol)
             elif tipo_cambio == 3:
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_euro = round((monto_convertir * 1.15), 2)
+                print("Saldo actual en Libras esterlinas:", saldo_libras)
+                print("Saldo actual en Euros:", saldo_euro)
             else:
                 print("Opcion no valida")
         else:
@@ -179,12 +201,18 @@ def cambio_moneda(opcion):
             if tipo_cambio == 1:
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_bs = round((monto_convertir * 7.99), 2)
+                print("Saldo actual en Euros:", saldo_euro)
+                print("Saldo actual en Bolivianos:", saldo_bs)
             elif tipo_cambio == 2:
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_dol = round((monto_convertir * 1.16), 2)
+                print("Saldo actual en Euros:", saldo_euro)
+                print("Saldo actual en Bolivianos:", saldo_dol)
             elif tipo_cambio == 3:
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_libras = round((monto_convertir / 1.15), 2)
+                print("Saldo actual en Euros:", saldo_euro)
+                print("Saldo actual en Bolivianos:", saldo_libras)
             else:
                 print("Opcion no valida")
         else:
@@ -201,11 +229,9 @@ def info_cuenta(opcion):
         print("Banco del Tigre")
         print("Pin: ****")
         if cuenta == 1:
-            print("Tipo de cuenta: Caja de Ahorro")
-        elif cuenta == 2:
             print("Tipo de cuenta: Cuenta Corriente")
-        elif cuenta == 0:
-            print("Tipo de cuenta: Extranjero")
+        elif cuenta == 2:
+            print("Tipo de cuenta: Cuenta Extranjero")
 
         print("Desea revelar el pin? ")
         print("Y o N")
@@ -216,11 +242,9 @@ def info_cuenta(opcion):
             print("Banco del Tigre")
             print("Pin: ",pin)
             if cuenta == 1:
-                print("Tipo de cuenta: Caja de Ahorro")
-            elif cuenta == 2:
                 print("Tipo de cuenta: Cuenta Corriente")
-            elif cuenta == 0:
-                print("Tipo de cuenta: Extranjero")
+            elif cuenta == 2:
+                print("Tipo de cuenta: Cuenta Extranjero")
             break
 
         elif pin_revelar == "N":
@@ -278,14 +302,15 @@ def confirmacion_salir():
 
 def cajero_fin(iniciar):
     global pin, cuenta
+    intentos = 3
     while True:
         if iniciar == 1:
             pin = input("Ingrese su pin de 4 digitos: ")
             pin = str(pin)
             if len(pin) == 4:
-                print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(3)")
+                print("Ingrese su tipo de cuenta: Cuenta Corriente(1) o Extranjero(2)")
                 cuenta = float(input())
-                if cuenta == 3 or cuenta == 2 or cuenta == 1:    
+                if cuenta == 2 or cuenta == 1:    
                     while True:
                         opcion = float(input("Ingresa una opcion (0 para help): "))
                         if opcion == 0:
