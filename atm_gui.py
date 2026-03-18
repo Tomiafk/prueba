@@ -1,5 +1,5 @@
 import tkinter as tk
-#from banco_final import retirar_gui, depositar_gui, obtener_saldos,convertir_gui
+from banco_final import retirar_gui, depositar_gui, obtener_saldos,convertir_gui
 estado = "inicio"
 cuenta = ""
 #ventana ////
