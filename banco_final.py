@@ -2,9 +2,9 @@
 import tkinter
 
 saldo_bs = 1000
-saldo_dol = 0
-saldo_libras = 0
-saldo_euro = 0 
+saldo_dol = 1000
+saldo_libras = 1000
+saldo_euro = 1000 
 
 # Zona de Definiciones
 
@@ -32,51 +32,73 @@ def retiro(opcion):
             if saldo_a_retirar > saldo_bs:
                 print("Saldo Insuficiente")
                 print("Saldo actual en Bolivianos:", saldo_bs)
+                break
             if saldo_a_retirar % 10 != 0:
                 print("Monto no valido")
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
+                break
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
         elif op_retiro == "2":
-            saldo_a_retirar = float(input("Ingresa saldo a retirar: "))
+            while True:
+                try:
+                    saldo_a_retirar = int(input("Ingresa saldo a retirar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_retirar <= 0:
                 print("Monto no valido")
                 break 
             if saldo_a_retirar > saldo_dol:
                 print("Saldo Insuficiente")
                 print("Saldo actual en Dolares:", saldo_dol)
+                break
             else:
                 saldo_dol = saldo_dol - saldo_a_retirar
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
         elif op_retiro == "3":
-            saldo_a_retirar = float(input("Ingresa saldo a retirar: "))
+            while True:
+                try:
+                    saldo_a_retirar = int(input("Ingresa saldo a retirar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_retirar <= 0:
                 print("Monto no valido")
                 break
             if saldo_a_retirar > saldo_libras:
                 print("Saldo Insuficiente")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
+                break
             if saldo_a_retirar % 5 != 0:
                 print("Monto no valido")
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
+                break
             else:
                 saldo_libras = saldo_libras - saldo_a_retirar
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
         elif op_retiro == "4":
-            saldo_a_retirar = float(input("Ingresa saldo a retirar: "))
+            while True:
+                try:
+                    saldo_a_retirar = int(input("Ingresa saldo a retirar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_retirar <= 0:
                 print("Monto no valido")
                 break
             if saldo_a_retirar > saldo_euro:
                 print("Saldo Insuficiente")
                 print("Saldo actual en Euros:", saldo_euro)
+                break
             if saldo_a_retirar % 5 != 0:
                 print("Monto no valido")
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
+                break
             else:
                 saldo_euro = saldo_euro - saldo_a_retirar
                 print("Saldo actual en Euros:", saldo_euro)
@@ -107,7 +129,12 @@ def deposito(opcion):
     op_deposito = input()
     while True:
         if op_deposito == "1":
-            saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
+            while True:
+                try:
+                    saldo_a_depositar = int(input("Ingresa saldo a depositar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_depositar <= 0:
                 print("Monto no valido")
                 break
@@ -119,7 +146,12 @@ def deposito(opcion):
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
         elif op_deposito == "2":
-            saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
+            while True:
+                try:
+                    saldo_a_depositar = int(input("Ingresa saldo a depositar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_depositar <= 0:
                 print("Monto no valido")
                 break
@@ -128,7 +160,12 @@ def deposito(opcion):
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
         elif op_deposito == "3":
-            saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
+            while True:
+                try:
+                    saldo_a_depositar = int(input("Ingresa saldo a depositar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_depositar <= 0:
                 print("Monto no valido")
                 break
@@ -140,7 +177,12 @@ def deposito(opcion):
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
         elif op_deposito == "4":
-            saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
+            while True:
+                try:
+                    saldo_a_depositar = int(input("Ingresa saldo a depositar: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
             if saldo_a_depositar <= 0:
                 print("Monto no valido")
                 break
@@ -193,7 +235,12 @@ def cambio_moneda(opcion):
             print("0. Retroceder")
             tipo_cambio = input()
             if tipo_cambio == "1":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_bs or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -203,7 +250,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
             elif tipo_cambio == "2":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_bs or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -213,7 +265,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
             elif tipo_cambio == "3":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_bs or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -234,7 +291,12 @@ def cambio_moneda(opcion):
             print("0. Retroceder")
             tipo_cambio = input()
             if tipo_cambio == "1":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_dol or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -244,7 +306,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
             elif tipo_cambio == "2":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_dol or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -254,7 +321,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
             elif tipo_cambio == "3":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_dol or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -275,7 +347,12 @@ def cambio_moneda(opcion):
             print("0. Retroceder")
             tipo_cambio = input()
             if tipo_cambio == "1":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_libras or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -285,7 +362,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
             elif tipo_cambio == "2":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_libras or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -295,7 +377,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
             elif tipo_cambio == "3":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_libras or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -316,7 +403,12 @@ def cambio_moneda(opcion):
             print("0. Retroceder")
             tipo_cambio = input()
             if tipo_cambio == "1":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_euro or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -326,7 +418,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
             elif tipo_cambio == "2":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_euro or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -336,7 +433,12 @@ def cambio_moneda(opcion):
                 print("Saldo actual en Bolivianos:", saldo_dol)
                 break
             elif tipo_cambio == "3":
-                monto_convertir = float(input("Ingresa monto a convertir: "))
+                while True:
+                    try:
+                        monto_convertir = float(input("Ingresa monto a convertir: "))
+                        break
+                    except ValueError:
+                        print("Ingresa un numero valido")
                 if monto_convertir > saldo_euro or monto_convertir <= 0:
                     print("Monto no permitido")
                     break
@@ -442,21 +544,27 @@ def confirmacion_salir():
         else:
             print("Opcion no valida")
 
-
-
-
 def cajero_fin(iniciar):
     global pin, cuenta
-    intentos = 2
+    intentos = 3
     while True:
         if iniciar == "1":
-            pin = input("Ingrese su pin de 4 digitos: ")
+            while True:
+                try:
+                    if intentos <= 0:
+                        print("Usted no es propietario de esta cuenta")
+                        return
+                    pin = int(input("Ingrese su pin de 4 digitos: "))
+                    break
+                except ValueError:
+                    print("Ingresa un numero entero")
+                    intentos = intentos - 1
             pin = str(pin)
-            while intentos >= 0:
-                if len(pin) == 4:
+            if len(pin) == 4:
+                while True:
                     print("Ingrese su tipo de cuenta: Cuenta Corriente(1) o Extranjero(2)")
                     cuenta = input()
-                    if cuenta == "2" or cuenta == "1":    
+                    if cuenta == "2" or cuenta == "1":   
                         while True:
                             opcion = input("Ingresa una opcion (0 para help): ")
                             if opcion == "0":
@@ -494,15 +602,9 @@ def cajero_fin(iniciar):
                                 print("Opcion no valida")
                     else:
                         print("Cuenta no valida")
-                else:
-                    print("Pin invalido")
-                    intentos = intentos - 1
-                    pin = input("Ingrese su pin de 4 digitos: ")
-                    pin = str(pin)
-
             else:
-                print("Usted no es el propietario de esta cuenta")
-                break
+                print("Pin invalido (Pin de 4 digitos)")
+                intentos = intentos - 1
 
         elif iniciar == "0":
             print("Esta seguro? ")
