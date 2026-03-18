@@ -278,9 +278,7 @@ pantalla.config(text="Banco El Tigre\n\n""Presione Aceptar\n""para comenzar")
 def reiniciar():
 
     global estado
-
     estado = "inicio"
-
     pantalla.config(text="Banco El Tigre\n\n""Presione Aceptar\n""para comenzar")
 
     limpiar()
