@@ -418,14 +418,24 @@ def info_cuenta(opcion):
 # Salir
 def salir(opcion):
     while True:
-        print("Esta seguro de que desea salir?" )
+        print("Desea hacer otra transaccion? ")
         print("Y o N")
-        seguro_salir = input()
-        if seguro_salir == "Y":
-            print("Muchas gracias por usar nuestro servicio :3")
-            return True
-        elif seguro_salir == "N":
-            return False
+        fin_trans = input()
+        if fin_trans == "N":
+            print("Esta seguro? ")
+            fin = input()
+            if fin == "Y":
+                print("Muchas gracias por usar nuestro servicio :3")
+                return True
+                break
+            elif fin == "N":
+                return False
+                break
+            else:
+                print("Opcion no valida")
+        elif fin_trans == "Y":
+            print("")
+            break
         else:
             print("Opcion no valida")
         
