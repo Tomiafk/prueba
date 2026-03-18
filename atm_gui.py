@@ -1,12 +1,12 @@
 import tkinter as tk
-#from banco_final import retirar_gui, depositar_gui, obtener_saldos,convertir_gui
+from banco_final import retirar_gui, depositar_gui, obtener_saldos,convertir_gui
 estado = "inicio"
 cuenta = ""
 
 
 #ventana ////
 
-ventana = tk.Tk() 
+ventana = tk.Tk()
 ventana.title("Banco El Tigre ATM")
 ventana.geometry("1000x900")
 ventana.configure(bg="#FFD100")   #yellow tigre rawr logo
@@ -82,7 +82,7 @@ entrada = tk.Label(ventana,text="",bg="white",fg="black",font=("Courier",16),wid
 
 entrada.pack(pady=10)
 
-# FUNCTIONS///////////////////////
+# FUNCTIONS
 
 def presionar(num):
     global numero_ingresado
@@ -105,7 +105,7 @@ def aceptar():
     global moneda_origen
     global moneda_destino
 
-    # INICIO//////////////////////////////////////////
+    # INICIO
     if estado == "inicio":
         
         if numero_ingresado == "1":
@@ -128,7 +128,7 @@ def aceptar():
 
 
 
-    # CUENTA//////////////////////////////////////////
+    # CUENTA
     if estado == "cuenta":
 
         if numero_ingresado == "1":
@@ -147,13 +147,9 @@ def aceptar():
         limpiar()
         return
 
-<<<<<<< HEAD
 
 
     # MENU
-=======
-    # MENU////////////////////////////////////
->>>>>>> Andres
     if estado == "menu":
 
         if numero_ingresado == "1":
@@ -341,7 +337,7 @@ for (num,r,c) in numeros:
     boton.grid(row=r,column=c,padx=5,pady=5)
 
 
-#buttones aceptar y borrar /////////////////////////
+#buttones aceptar y borrar //////////////////////
 
 tk.Button(ventana,text="Aceptar",bg="black",fg="#FFD100",width=15,command=aceptar).pack(pady=10)
 
@@ -357,12 +353,7 @@ estado = "inicio"
 def reiniciar():
     global estado
     estado = "inicio"
-<<<<<<< HEAD
     pantalla.config(text="Bienvenido al Banco del Tigre\n\n1 Iniciar\n0 Salir")
-=======
-    pantalla.config(text="Banco El Tigre\n\n""Presione Aceptar\n""para comenzar")
-
->>>>>>> Andres
     limpiar()
 
 ventana.mainloop()
