@@ -18,8 +18,13 @@ cuenta = ""
 
 ventana = tk.Tk()
 ventana.title("Banco El Tigre ATM")
+<<<<<<< HEAD
 ventana.geometry("1200x900")
 ventana.configure(bg="#FFD100")   #yellow tigre rawr logo
+=======
+ventana.geometry("700x500")
+ventana.configure(bg="#FFD100")   # strong yellow
+>>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
 
 # variables para empezar/////
 >>>>>>> 3524fdca18db8b8b2759fa221db0c2c910c31dd3

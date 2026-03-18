@@ -22,67 +22,43 @@ def retiro(opcion):
         print("Opcion invalida")
         return
     while True:
-<<<<<<< HEAD
-        saldo_a_retirar = float(input("Ingresa saldo a retirar: "))
-=======
         saldo_a_retirar = int(input("Ingresa saldo a retirar: "))
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
         if saldo_a_retirar <= 0:
             print("Monto no valido")
             continue
         if op_retiro == 1:
             if saldo_a_retirar > saldo_bs:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_bs)
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
-<<<<<<< HEAD
-                print("Saldo actual:", saldo_bs)
-=======
                 print("Transaccion exitosa")
                 
                 print("Revisar consulta de saldo")
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
                 break
             
         elif op_retiro == 2:
             if saldo_a_retirar > saldo_dol:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_dol)
             else:
                 saldo_dol = saldo_dol - saldo_a_retirar
-<<<<<<< HEAD
-                print("Saldo actual:", saldo_dol)
-=======
                 print("Transaccion exitosa")
                 print("Saldo actual:")
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
                 break
         elif op_retiro == 3:
             if saldo_a_retirar > saldo_libras:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_libras)
             else:
                 saldo_libras = saldo_libras - saldo_a_retirar
-<<<<<<< HEAD
-                print("Saldo actual:", saldo_libras)
-=======
                 print("Transaccion exitosa")
                 print("Revisar consulta de saldo")
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
                 break
         elif op_retiro == 4:
             if saldo_a_retirar > saldo_euro:
                 print("Saldo Insuficiente")
-                print("Saldo actual:", saldo_euro)
             else:
                 saldo_euro = saldo_euro - saldo_a_retirar
-<<<<<<< HEAD
-                print("Saldo actual:", saldo_euro)
-=======
                 print("Transaccion exitosa")
                 print("Revisar consulta de saldo")
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
                 break
         else:
             print("Opcion no valida")
@@ -98,9 +74,6 @@ def deposito(opcion):
     print("4. Euro")
     
     while True:
-<<<<<<< HEAD
-        saldo_a_depositar = float(input("Ingresa saldo a depositar: "))
-=======
         try:
             op_deposito = int(input())
 
@@ -131,7 +104,6 @@ def deposito(opcion):
             print("Entrada invalida")
  
     while True:
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
         if saldo_a_depositar <= 0:
             print("Opcion no valida")
         if op_deposito == 1:
@@ -452,47 +424,11 @@ def salir(opcion):
         if seguro_salir == "Y":
             print("Muchas gracias por usar nuestro servicio :3")
             return True
-<<<<<<< HEAD
-            break
-        elif seguro_salir == "N":
-            return False
-            break
-        else:
-            print("Opcion no valida")
-            print("Esta seguro? ")
-            print("Y o N")
-            saalir_fin = input()
-
-# Confirmacion salir
-def confirmacion_salir():
-    while True:
-        print("Desea hacer otra transaccion? ")
-        print("Y o N")
-        fin_trans = input()
-        if fin_trans == "N":
-            print("Esta seguro? ")
-            fin = input()
-            if fin == "Y":
-                print("Muchas gracias por usar nuestro servicio :3")
-                return True
-                break
-            elif fin == "N":
-                return False
-                break
-            else:
-                print("Opcion no valida")
-        elif fin_trans == "Y":
-            print("")
-            break
-        else:
-            print("Opcion no valida")
-=======
         elif seguro_salir == "N":
             return False
         else:
             print("Opcion no valida")
         
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
 
 # Confirmacion salir
 def confirmacion_salir():
@@ -527,56 +463,6 @@ def confirmacion_salir():
 def cajero_fin(iniciar):
     global pin, cuenta
     while True:
-<<<<<<< HEAD
-        if iniciar == 1:
-            pin = input("Ingrese su pin de 4 digitos: ")
-            pin = str(pin)
-            if len(pin) == 4:
-                print("Ingrese su tipo de cuenta: Caja de Ahorro(1), Cuenta Corriente(2) o Extranjero(3)")
-                cuenta = float(input())
-                if cuenta == 3 or cuenta == 2 or cuenta == 1:    
-                    while True:
-                        opcion = float(input("Ingresa una opcion (0 para help): "))
-                        if opcion == 0:
-                            print("Las opciones son:")
-                            print("1  Retiro")
-                            print("2  Deposito")
-                            print("3  Consulta (Consulta de saldo)")
-                            print("4  Cambio de moneda")
-                            print("5  Informacion de cuenta")
-                            print("6  Salir")
-                        elif opcion == 1:
-                            if retiro(opcion):
-                                return
-
-                        elif opcion == 2:
-                            if deposito(opcion):
-                                return
-                           
-                        elif opcion == 3:
-                            if consulta_saldo(opcion):
-                                return
-
-                        elif opcion == 4:
-                            if cambio_moneda(opcion):
-                                return
-                            
-                        elif opcion == 5:
-                            if info_cuenta(opcion):
-                                return
-                            
-                        elif opcion == 6:
-                            if salir(opcion):
-                                return
-                        else:
-                            print("Opcion no valida")
-                else:
-                    print("Cuenta no valida")
-            else:
-                print("Pin invalido")
-                print("Usted no es el propietario de esta cuenta")
-                break
-=======
         if iniciar == 1: 
             intentos = 3
 
@@ -661,7 +547,6 @@ def cajero_fin(iniciar):
                         return
                 else:
                     print("Opcion no valida")
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
 
         elif iniciar == 0:
             print("Esta seguro? ")
@@ -686,7 +571,7 @@ def cajero_fin(iniciar):
                 print("Entrada invalida")
                 return
 
-# FUNCIONES PARA GUI
+# -------- FUNCIONES PARA GUI --------
 
 def obtener_saldos():
     return {
@@ -745,55 +630,10 @@ def depositar_gui(moneda, monto):
         saldo_euro += monto
 
     return "Deposito exitoso"
-def convertir_gui(origen, destino, monto):
-    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
 
-    if monto <= 0:
-        return "Monto no valido"
 
-<<<<<<< HEAD
-# ORIGINAL CODE
-=======
-    tasas = {("bs","usd"): 1/6.96,("bs","libras"): 1/9.20,("bs","euro"): 1/7.99,("usd","bs"): 6.96,("usd","libras"): 1/1.33,("usd","euro"): 1/1.16,("libras","bs"): 9.20,("libras","usd"): 1.33,("libras","euro"): 1.15,("euro","bs"): 7.99,("euro","usd"): 1.16,("euro","libras"): 1/1.15}
->>>>>>> 3524fdca18db8b8b2759fa221db0c2c910c31dd3
+# -------- ORIGINAL CODE --------
 
-    if origen == destino:
-        return "Monedas iguales"
-
-    if (origen, destino) not in tasas:
-        return "Conversion no valida"
-
-    # verificar saldo
-    saldos = {"bs": saldo_bs,"usd": saldo_dol,"libras": saldo_libras,"euro": saldo_euro}
-
-    if monto > saldos[origen]:
-        return "Saldo insuficiente"
-
-    convertido = round(monto * tasas[(origen, destino)], 2)
-
-    # restar origen
-    if origen == "bs":
-        saldo_bs -= monto
-    elif origen == "usd":
-        saldo_dol -= monto
-    elif origen == "libras":
-        saldo_libras -= monto
-    elif origen == "euro":
-        saldo_euro -= monto
-
-    # sumar destino
-    if destino == "bs":
-        saldo_bs += convertido
-    elif destino == "usd":
-        saldo_dol += convertido
-    elif destino == "libras":
-        saldo_libras += convertido
-    elif destino == "euro":
-        saldo_euro += convertido
-
-    return f"Convertido: {convertido} {destino.upper()}"
-
-#ORIGINAL CODE //////////
 pin = ""
 cuenta = 0
 
@@ -801,9 +641,6 @@ if __name__ == "__main__":
     print("Bienvenido al Banco del Tigre")
     print("Presione 1 para iniciar")
     print("Presiona 0 para cancelar")
-<<<<<<< HEAD
-    iniciar =float(input())
-=======
 
     while True:
         try:
@@ -815,6 +652,5 @@ if __name__ == "__main__":
         except:
             print("Entrada invalida")
 
->>>>>>> f278910430727b362b528b3bc3183641ed7cdf2b
     cajero_fin(iniciar)
 
