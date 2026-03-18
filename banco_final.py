@@ -412,11 +412,11 @@ def convertir_gui(origen, destino, monto):
     if monto <= 0:
         return "Monto no valido"
 
-<<<<<<< HEAD
+
 # ORIGINAL CODE
-=======
+
     tasas = {("bs","usd"): 1/6.96,("bs","libras"): 1/9.20,("bs","euro"): 1/7.99,("usd","bs"): 6.96,("usd","libras"): 1/1.33,("usd","euro"): 1/1.16,("libras","bs"): 9.20,("libras","usd"): 1.33,("libras","euro"): 1.15,("euro","bs"): 7.99,("euro","usd"): 1.16,("euro","libras"): 1/1.15}
->>>>>>> 3524fdca18db8b8b2759fa221db0c2c910c31dd3
+
 
     if origen == destino:
         return "Monedas iguales"
