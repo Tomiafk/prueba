@@ -1,4 +1,4 @@
-import random
+
 import tkinter
 
 saldo_bs = 1000
