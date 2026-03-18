@@ -406,7 +406,6 @@ def depositar_gui(moneda, monto):
         saldo_euro += monto
 
     return "Deposito exitoso"
-
 def convertir_gui(origen, destino, monto):
     global saldo_bs, saldo_dol, saldo_libras, saldo_euro
 
@@ -454,8 +453,8 @@ def convertir_gui(origen, destino, monto):
         saldo_euro += convertido
 
     return f"Convertido: {convertido} {destino.upper()}"
-# ORIGINAL CODE
 
+#ORIGINAL CODE //////////
 pin = ""
 cuenta = 0
 
@@ -464,8 +463,4 @@ if __name__ == "__main__":
     print("Presione 1 para iniciar")
     print("Presiona 0 para cancelar")
     iniciar =float(input())
-<<<<<<< HEAD
     cajero_fin(iniciar)
-=======
-    cajero_fin(iniciar)
->>>>>>> Andres
