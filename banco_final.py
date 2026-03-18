@@ -383,10 +383,51 @@ def depositar_gui(moneda, monto):
         saldo_euro += monto
 
     return "Deposito exitoso"
+def convertir_gui(origen, destino, monto):
+    global saldo_bs, saldo_dol, saldo_libras, saldo_euro
 
+    if monto <= 0:
+        return "Monto no valido"
 
-# -------- ORIGINAL CODE --------
+    tasas = {("bs","usd"): 1/6.96,("bs","libras"): 1/9.20,("bs","euro"): 1/7.99,("usd","bs"): 6.96,("usd","libras"): 1/1.33,("usd","euro"): 1/1.16,("libras","bs"): 9.20,("libras","usd"): 1.33,("libras","euro"): 1.15,("euro","bs"): 7.99,("euro","usd"): 1.16,("euro","libras"): 1/1.15}
 
+    if origen == destino:
+        return "Monedas iguales"
+
+    if (origen, destino) not in tasas:
+        return "Conversion no valida"
+
+    # verificar saldo
+    saldos = {"bs": saldo_bs,"usd": saldo_dol,"libras": saldo_libras,"euro": saldo_euro}
+
+    if monto > saldos[origen]:
+        return "Saldo insuficiente"
+
+    convertido = round(monto * tasas[(origen, destino)], 2)
+
+    # restar origen
+    if origen == "bs":
+        saldo_bs -= monto
+    elif origen == "usd":
+        saldo_dol -= monto
+    elif origen == "libras":
+        saldo_libras -= monto
+    elif origen == "euro":
+        saldo_euro -= monto
+
+    # sumar destino
+    if destino == "bs":
+        saldo_bs += convertido
+    elif destino == "usd":
+        saldo_dol += convertido
+    elif destino == "libras":
+        saldo_libras += convertido
+    elif destino == "euro":
+        saldo_euro += convertido
+
+    return f"Convertido: {convertido} {destino.upper()}"
+
+#ORIGINAL CODE //////////
 pin = ""
 cuenta = 0
 
