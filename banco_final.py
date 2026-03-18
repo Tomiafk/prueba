@@ -24,8 +24,10 @@ def retiro(opcion):
         if op_retiro == 1:
             if saldo_a_retirar > saldo_bs:
                 print("Saldo Insuficiente")
+                print("Saldo actual:", saldo_bs)
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
+                print("Saldo actual:", saldo_bs)
                 break
         elif op_retiro == 2:
             if saldo_a_retirar > saldo_dol:
