@@ -6,7 +6,8 @@ cuenta = ""
 
 ventana = tk.Tk() 
 ventana.title("Banco El Tigre ATM")
-ventana.geometry("1200x900")
+#ventana.geometry("1200x900")
+ventana.state("zoomed")  # pantalla completa
 ventana.configure(bg="#FFD100")   #yellow tigre rawr logo
 
 # variables para empezar/////
@@ -25,28 +26,38 @@ alto_ventana = int(alto_pantalla * 0.8)
 x = (ancho_pantalla // 2) - (ancho_ventana // 2)
 y = (alto_pantalla // 2) - (alto_ventana // 2)
 
-ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
+#ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
 
 
 pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
+pantalla.pack(pady=10)
 
-
-pantalla.pack(pady=20)
+contenedor = tk.Frame(ventana, bg="#FFD100")
+contenedor.pack(expand=True)
 
 #TIGER LOGO//////////////////////////////////
 #anticrasheo
+import os
 try:
-    logo = tk.PhotoImage(file="tigre_logo.png")
-    logo_label = tk.Label(ventana,image=logo,bg="#FFD100")
-    logo_label.pack()
+    ruta = os.path.join(os.path.dirname(__file__), "tigre_logo.png")
+
+    logo = tk.PhotoImage(file=ruta)
+    logo = logo.subsample(1, 1)
+
+    logo_label = tk.Label(ventana, image=logo, bg="#FFD100")
+    logo_label.image = logo
+    logo_label.pack(in_=contenedor, pady=5)
+
+
 except:
-    pass
+    print("No se pudo cargar el logo")
+
 
 #ENTRY DISPLAY 
 
 entrada = tk.Label(ventana,text="",bg="white",fg="black",font=("Courier",16),width=20)
 
-entrada.pack(pady=10)
+entrada.pack(pady=5)
 
 # FUNCTIONS///////////////////////
 
@@ -331,24 +342,32 @@ def aceptar():
 
 
 #KEYPAD /////////////////////////////////////////////
+frame_teclado = tk.Frame(ventana, bg="#FFD100")
+frame_teclado.place(relx=0.5, rely=0.6, anchor="center")  # centra el teclado en la ventana
 
-frame_teclado = tk.Frame(ventana,bg="#FFD100")
-frame_teclado.pack()
-#use of tuplas>?? check.....
-numeros = [(1,0,0),(2,0,1),(3,0,2),(4,1,0),(5,1,1),(6,1,2),(7,2,0),(8,2,1),(9,2,2),(0,3,1)]
+# Números 1 al 9
+numeros = [
+    (1, 0, 0),(2, 0, 1),(3, 0, 2),
+    (4, 1, 0),(5, 1, 1),(6, 1, 2),
+    (7, 2, 0),(8, 2, 1),(9, 2, 2)
+]
 
-for (num,r,c) in numeros:
+for (num, r, c) in numeros:
+    tk.Button(frame_teclado, text=num, width=6, height=3,bg="black", fg="#FFD100",command=lambda n=num: presionar(n)).grid(row=r, column=c, padx=5, pady=5)
 
-    boton = tk.Button(frame_teclado,text=num,width=6,height=2,bg="black",fg="#FFD100",command=lambda n=num: presionar(n))
+# Fila final: Aceptar | 0 | Borrar
+tk.Button(frame_teclado, text="Aceptar", width=6, height=3,bg="green", fg="white", command=aceptar).grid(row=3, column=0, padx=5, pady=5)
 
-    boton.grid(row=r,column=c,padx=5,pady=5)
+tk.Button(frame_teclado, text="0", width=6, height=3,bg="black", fg="#FFD100", command=lambda: presionar(0)).grid(row=3, column=1, padx=5, pady=5)
+
+tk.Button(frame_teclado, text="Borrar", width=6, height=3,bg="red", fg="white", command=limpiar).grid(row=3, column=2, padx=5, pady=5)
 
 
-#buttones aceptar y borrar /////////////////////////
+# Frame para el teclado, debajo de la pantalla
+#frame_teclado = tk.Frame(ventana, bg="#FFD100")
+#frame_teclado.pack(pady=20)  # espacio debajo de la pantalla
 
-tk.Button(ventana,text="Aceptar",bg="black",fg="#FFD100",width=15,command=aceptar).pack(pady=10)
 
-tk.Button(ventana,text="Borrar",bg="black",fg="#FFD100",width=15,command=limpiar).pack()
 
 #START SCREEN 
 
