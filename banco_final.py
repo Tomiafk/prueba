@@ -39,6 +39,7 @@ def retiro(opcion):
                 break
             else:
                 saldo_bs = saldo_bs - saldo_a_retirar
+                print("transaccion exitosa")
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
         elif op_retiro == "2":
@@ -57,6 +58,7 @@ def retiro(opcion):
                 break
             else:
                 saldo_dol = saldo_dol - saldo_a_retirar
+                print("transaccion exitosa")
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
         elif op_retiro == "3":
@@ -79,6 +81,7 @@ def retiro(opcion):
                 break
             else:
                 saldo_libras = saldo_libras - saldo_a_retirar
+                print("transaccion exitosa")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
         elif op_retiro == "4":
@@ -101,6 +104,7 @@ def retiro(opcion):
                 break
             else:
                 saldo_euro = saldo_euro - saldo_a_retirar
+                print("transaccion exitosa")
                 print("Saldo actual en Euros:", saldo_euro)
                 break
         elif op_retiro == "0":
@@ -143,6 +147,7 @@ def deposito(opcion):
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
             else:
                 saldo_bs = saldo_bs + saldo_a_depositar
+                print("transaccion exitosa")
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
         elif op_deposito == "2":
@@ -157,6 +162,7 @@ def deposito(opcion):
                 break
             else:
                 saldo_dol = saldo_dol + saldo_a_depositar
+                print("transaccion exitosa")
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
         elif op_deposito == "3":
@@ -174,6 +180,7 @@ def deposito(opcion):
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
             else:
                 saldo_libras = saldo_libras + saldo_a_depositar
+                print("transaccion exitosa")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
         elif op_deposito == "4":
@@ -191,6 +198,7 @@ def deposito(opcion):
                 print("Se solicita ingresar una cantidad conforme a las denominaciones disponibles del cajero")
             else:
                 saldo_euro = saldo_euro + saldo_a_depositar
+                print("transaccion exitosa")
                 print("Saldo actual en Euros:", saldo_euro)
                 break
         elif op_deposito == "0":
@@ -246,6 +254,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_dol = round((monto_convertir / 6.96), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
@@ -261,6 +270,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_libras = round((monto_convertir / 9.20), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
@@ -276,6 +286,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_bs = saldo_bs - monto_convertir
                 saldo_euro = round((monto_convertir / 7.99), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 print("Saldo actual en Euros:", saldo_euro)
                 break
@@ -302,6 +313,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_bs = round((monto_convertir * 6.96) ,2)
+                print("transaccion exitosa")
                 print("Saldo actual en Dolares:", saldo_dol)
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
@@ -317,6 +329,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_libras = round((monto_convertir / 1.33), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Dolares:", saldo_dol)
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 break
@@ -332,6 +345,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_dol = saldo_dol - monto_convertir
                 saldo_euro = round((monto_convertir / 1.16), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Dolares:", saldo_dol)
                 print("Saldo actual en Euros:", saldo_euro)
                 break
@@ -358,6 +372,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_bs = round((monto_convertir * 9.20), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
@@ -373,6 +388,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_dol = round((monto_convertir * 1.33), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 print("Saldo actual en Dolares:", saldo_dol)
                 break
@@ -388,6 +404,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_libras = saldo_libras - monto_convertir
                 saldo_euro = round((monto_convertir * 1.15), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Libras esterlinas:", saldo_libras)
                 print("Saldo actual en Euros:", saldo_euro)
                 break
@@ -414,6 +431,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_bs = round((monto_convertir * 7.99), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Euros:", saldo_euro)
                 print("Saldo actual en Bolivianos:", saldo_bs)
                 break
@@ -429,6 +447,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_dol = round((monto_convertir * 1.16), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Euros:", saldo_euro)
                 print("Saldo actual en Bolivianos:", saldo_dol)
                 break
@@ -444,6 +463,7 @@ def cambio_moneda(opcion):
                     break
                 saldo_euro = saldo_euro - monto_convertir
                 saldo_libras = round((monto_convertir / 1.15), 2)
+                print("transaccion exitosa")
                 print("Saldo actual en Euros:", saldo_euro)
                 print("Saldo actual en Bolivianos:", saldo_libras)
                 break
