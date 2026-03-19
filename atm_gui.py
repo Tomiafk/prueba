@@ -6,7 +6,8 @@ cuenta = ""
 
 ventana = tk.Tk() 
 ventana.title("Banco El Tigre ATM")
-ventana.geometry("1200x900")
+#ventana.geometry("1200x900")
+ventana.state("zoomed")  # pantalla completa
 ventana.configure(bg="#FFD100")   #yellow tigre rawr logo
 
 # variables para empezar/////
@@ -25,7 +26,7 @@ alto_ventana = int(alto_pantalla * 0.8)
 x = (ancho_pantalla // 2) - (ancho_ventana // 2)
 y = (alto_pantalla // 2) - (alto_ventana // 2)
 
-ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
+#ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
 
 
 pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
@@ -35,12 +36,21 @@ pantalla.pack(pady=20)
 
 #TIGER LOGO//////////////////////////////////
 #anticrasheo
+import os
 try:
-    logo = tk.PhotoImage(file="tigre_logo.png")
-    logo_label = tk.Label(ventana,image=logo,bg="#FFD100")
-    logo_label.pack()
+    ruta = os.path.join(os.path.dirname(__file__), "tigre_logo.png")
+
+    logo = tk.PhotoImage(file=ruta)
+    logo = logo.subsample(2, 2)
+
+    logo_label = tk.Label(ventana, image=logo, bg="#FFD100")
+    logo_label.image = logo
+    logo_label.pack(pady=10)
+
+
 except:
-    pass
+    print("No se pudo cargar el logo")
+
 
 #ENTRY DISPLAY 
 
@@ -72,7 +82,7 @@ def aceptar():
     global moneda_origen
     global moneda_destino
     if numero_ingresado == "":
-        pantalla.config(text="Ingrese un numero")
+        pantalla.config(text="Opcion invalida")
         return
 
 
@@ -93,7 +103,6 @@ def aceptar():
 
         limpiar()
         return
-
 
     # CUENTA//////////////////////////////////////////
 
@@ -121,111 +130,122 @@ def aceptar():
         limpiar()
         return
 
+
     # MENU////////////////////////////////////
     if estado == "menu":
 
         if numero_ingresado == "1":
-
             operacion = "retiro"
-
-            pantalla.config(text="Seleccione moneda\n\n""1 Bs\n2 USD\n3 GBP\n4 EUR")
-
+            pantalla.config(text="Seleccione moneda\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
             estado = "moneda"
 
         elif numero_ingresado == "2":
-
             operacion = "deposito"
-
-            pantalla.config(text="Seleccione moneda\n\n""1 Bs\n2 USD\n3 GBP\n4 EUR")
-
+            pantalla.config(text="Seleccione moneda\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
             estado = "moneda"
 
         elif numero_ingresado == "3":
-
             saldos = obtener_saldos()
-
             pantalla.config(text=f"BS: {saldos['bs']}\n"f"USD: {saldos['usd']}\n"f"GBP: {saldos['libras']}\n"f"EUR: {saldos['euro']}\n\n""1 Otra\n2 Salir")
-
             estado = "otra"
 
         elif numero_ingresado == "4":
-
             operacion = "cambio"
-
-            pantalla.config(text="Moneda origen:\n\n""1 Bs\n2 USD\n3 GBP\n4 EUR")
-
+            pantalla.config(text="Moneda origen:\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
             estado = "moneda_origen"
 
         elif numero_ingresado == "5":
-
             pantalla.config(text="Gracias por usar\nBanco El Tigre")
-
             ventana.after(2000, ventana.destroy)
-
             estado = "fin"
-        elif numero_ingresado == "9":
 
-            pantalla.config(text="Seleccione cuenta:\n\n1 CAja de ahorros\n2 Cuenta Extranjera\n9 Volver")
+        elif numero_ingresado == "9":
+            pantalla.config(text="Seleccione cuenta:\n\n1 Caja de ahorros\n2 Cuenta Extranjera\n9 Volver")
             estado = "cuenta"
 
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir\n9 Volver")
 
         limpiar()
         return
+
 
     # MONEDA ORIGEN
     if estado == "moneda_origen":
 
         if numero_ingresado == "1":
             moneda_origen = "bs"
+
         elif numero_ingresado == "2":
             moneda_origen = "usd"
+
         elif numero_ingresado == "3":
             moneda_origen = "libras"
+
         elif numero_ingresado == "4":
             moneda_origen = "euro"
-        else:
-            pantalla.config(text="Moneda invalida")
+
+        elif numero_ingresado == "9":
+            pantalla.config(text="Opciones:\n1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir\n9 Volver")
+            estado = "menu"
             limpiar()
             return
 
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            limpiar()
+            return
 
-        pantalla.config(text="Moneda destino:\n\n""1 Bs\n2 USD\n3 GBP\n4 EUR")
-
+        pantalla.config(text="Moneda destino:\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
         estado = "moneda_destino"
         limpiar()
         return
+
+
+    
 
     # MONEDA DESTINO
     if estado == "moneda_destino":
 
         if numero_ingresado == "1":
             moneda_destino = "bs"
+
         elif numero_ingresado == "2":
             moneda_destino = "usd"
+
         elif numero_ingresado == "3":
             moneda_destino = "libras"
+
         elif numero_ingresado == "4":
             moneda_destino = "euro"
-        else:
-            pantalla.config(text="Moneda invalida")
+
+        elif numero_ingresado == "9":
+            pantalla.config(text="Moneda origen:\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            estado = "moneda_origen"
             limpiar()
             return
 
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            limpiar()
+            return
 
-        pantalla.config(text="Ingrese monto a convertir:")
-
+        pantalla.config(text="Ingrese monto:")
         estado = "monto_cambio"
         limpiar()
         return
+
 
     # MONTO CAMBIO
     if estado == "monto_cambio":
         try:
             monto = float(numero_ingresado)
+
             if monto <= 0:
-                pantalla.config(text="Monto invalido\n\nIntente otra vez")
+                pantalla.config(text="Monto invalido")
                 limpiar()
                 return
+
         except:
             pantalla.config(text="Entrada invalida")
             limpiar()
@@ -242,19 +262,32 @@ def aceptar():
         return
 
     # MONEDA NORMAL
+
     if estado == "moneda":
 
         if numero_ingresado == "1":
             moneda = "bs"
+
         elif numero_ingresado == "2":
             moneda = "usd"
+
         elif numero_ingresado == "3":
             moneda = "libras"
+
         elif numero_ingresado == "4":
             moneda = "euro"
 
-        pantalla.config(text="Ingrese monto:")
+        elif numero_ingresado == "9":
+            pantalla.config(text="Opciones:\n1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir\n9 Volver")
+            estado = "menu"
+            limpiar()
+            return
 
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            limpiar()
+            return
+        pantalla.config(text="Ingrese monto:")
         estado = "monto"
         limpiar()
         return
@@ -278,7 +311,11 @@ def aceptar():
         elif operacion == "deposito":
             mensaje = depositar_gui(moneda, monto)
 
-        pantalla.config(text=mensaje + "\n\n""Otra transaccion?\n""1 Si\n2 No")
+        saldos = obtener_saldos()
+
+        pantalla.config(text= mensaje + "\n\n" f"BS: {saldos['bs']}\n"
+        f"USD: {saldos['usd']}\n" f"GBP: {saldos['libras']}\n"
+        f"EUR: {saldos['euro']}\n\n""Otra transaccion?\n1 Si\n2 No")
 
         estado = "otra"
         limpiar()
@@ -288,19 +325,20 @@ def aceptar():
     if estado == "otra":
 
         if numero_ingresado == "1":
-
-            pantalla.config(text="Opciones:\n""1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir")
+            pantalla.config(text="Opciones:\n1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir\n9 Volver")
             estado = "menu"
 
         elif numero_ingresado == "2":
-
             pantalla.config(text="Gracias por usar\nBanco El Tigre")
-
             ventana.after(2000, ventana.destroy)
-
             estado = "fin"
 
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Si\n2 No")
+
         limpiar()
+        return
+
 
 #KEYPAD /////////////////////////////////////////////
 
