@@ -30,11 +30,12 @@ y = (alto_pantalla // 2) - (alto_ventana // 2)
 
 
 pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
+
+
 pantalla.pack(pady=10)
 
 contenedor = tk.Frame(ventana, bg="#FFD100")
 contenedor.pack(expand=True)
-
 #TIGER LOGO//////////////////////////////////
 #anticrasheo
 import os
@@ -342,31 +343,25 @@ def aceptar():
 
 
 #KEYPAD /////////////////////////////////////////////
-frame_teclado = tk.Frame(ventana, bg="#FFD100")
-frame_teclado.place(relx=0.5, rely=0.6, anchor="center")  # centra el teclado en la ventana
 
-# Números 1 al 9
-numeros = [
-    (1, 0, 0),(2, 0, 1),(3, 0, 2),
-    (4, 1, 0),(5, 1, 1),(6, 1, 2),
-    (7, 2, 0),(8, 2, 1),(9, 2, 2)
-]
+frame_teclado = tk.Frame(ventana,bg="#FFD100")
+frame_teclado.pack(in_=contenedor, pady=10)
 
-for (num, r, c) in numeros:
-    tk.Button(frame_teclado, text=num, width=6, height=3,bg="black", fg="#FFD100",command=lambda n=num: presionar(n)).grid(row=r, column=c, padx=5, pady=5)
+#use of tuplas>?? check.....
+numeros = [(1,0,0),(2,0,1),(3,0,2),(4,1,0),(5,1,1),(6,1,2),(7,2,0),(8,2,1),(9,2,2),(0,3,1)]
 
-# Fila final: Aceptar | 0 | Borrar
-tk.Button(frame_teclado, text="Aceptar", width=6, height=3,bg="green", fg="white", command=aceptar).grid(row=3, column=0, padx=5, pady=5)
+for (num,r,c) in numeros:
 
-tk.Button(frame_teclado, text="0", width=6, height=3,bg="black", fg="#FFD100", command=lambda: presionar(0)).grid(row=3, column=1, padx=5, pady=5)
+    boton = tk.Button(frame_teclado,text=num,width=6,height=2,bg="black",fg="#FFD100",command=lambda n=num: presionar(n))
 
-tk.Button(frame_teclado, text="Borrar", width=6, height=3,bg="red", fg="white", command=limpiar).grid(row=3, column=2, padx=5, pady=5)
+    boton.grid(row=r,column=c,padx=5,pady=5)
 
 
-# Frame para el teclado, debajo de la pantalla
-#frame_teclado = tk.Frame(ventana, bg="#FFD100")
-#frame_teclado.pack(pady=20)  # espacio debajo de la pantalla
+#buttones aceptar y borrar /////////////////////////
 
+tk.Button(contenedor, text="Aceptar", bg="black", fg="#FFD100", width=15, command=aceptar).pack(pady=10)
+
+tk.Button(contenedor, text="Borrar", bg="black", fg="#FFD100", width=15, command=limpiar).pack()
 
 
 #START SCREEN 
