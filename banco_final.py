@@ -625,6 +625,18 @@ def cajero_fin(iniciar):
             print("opcion invalida")
             iniciar = input()
 
+
+#ORIGINAL CODE //////////starts everything
+pin = ""
+cuenta = 0
+
+if __name__ == "__main__":
+    print("Bienvenido al Banco del Tigre")
+    print("Presione 1 para iniciar")
+    print("Presiona 0 para cancelar")
+    iniciar = input()
+    cajero_fin(iniciar)  
+    
 # FUNCIONES PARA GUI
 
 def obtener_saldos():
@@ -731,14 +743,3 @@ def convertir_gui(origen, destino, monto):
         saldo_euro += convertido
 
     return f"Convertido: {convertido} {destino.upper()}"
-
-#ORIGINAL CODE //////////
-pin = ""
-cuenta = 0
-
-if __name__ == "__main__":
-    print("Bienvenido al Banco del Tigre")
-    print("Presione 1 para iniciar")
-    print("Presiona 0 para cancelar")
-    iniciar = input()
-    cajero_fin(iniciar)

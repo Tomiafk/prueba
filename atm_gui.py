@@ -29,7 +29,7 @@ y = (alto_pantalla // 2) - (alto_ventana // 2)
 #ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
 
 
-pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
+pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=10,justify="left",anchor="nw",padx=15,pady=15)
 
 
 pantalla.pack(pady=20)
@@ -41,7 +41,7 @@ try:
     ruta = os.path.join(os.path.dirname(__file__), "tigre_logo.png")
 
     logo = tk.PhotoImage(file=ruta)
-    logo = logo.subsample(2, 2)
+    logo = logo.subsample(1, 1)
 
     logo_label = tk.Label(ventana, image=logo, bg="#FFD100")
     logo_label.image = logo
@@ -71,7 +71,8 @@ def limpiar():
     numero_ingresado = ""
     entrada.config(text="")
 
-
+    if estado == "fin":
+        return
 def aceptar():
 
     global numero_ingresado
@@ -81,8 +82,8 @@ def aceptar():
     global cuenta
     global moneda_origen
     global moneda_destino
-    if numero_ingresado == "":
-        pantalla.config(text="Opcion invalida")
+    if numero_ingresado.strip() == "":
+        pantalla.config(text=pantalla.cget("text") + "\n\n")
         return
 
 
@@ -100,7 +101,7 @@ def aceptar():
 
         else:
             pantalla.config(text="Opcion invalida\n\n1 Iniciar\n0 Salir")
-
+            estado = "inicio"
         limpiar()
         return
 
@@ -193,6 +194,7 @@ def aceptar():
 
         else:
             pantalla.config(text="Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            estado="menu" 
             limpiar()
             return
 
@@ -246,7 +248,7 @@ def aceptar():
                 limpiar()
                 return
 
-        except:
+        except ValueError:
             pantalla.config(text="Entrada invalida")
             limpiar()
             return
@@ -284,7 +286,8 @@ def aceptar():
             return
 
         else:
-            pantalla.config(text="Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            pantalla.config(text=" Opcion invalida\n\n1 Bs\n2 USD\n3 GBP\n4 EUR\n9 Volver")
+            estado = "moneda"  
             limpiar()
             return
         pantalla.config(text="Ingrese monto:")
@@ -296,7 +299,7 @@ def aceptar():
     if estado == "monto":
         try:
             monto = float(numero_ingresado)
-            if monto <= 0:
+            if monto <= 0 or monto%10!=0:
                 pantalla.config(text="Monto invalido\n\nIntente otra vez")
                 limpiar()
                 return
@@ -335,7 +338,7 @@ def aceptar():
 
         else:
             pantalla.config(text="Opcion invalida\n\n1 Si\n2 No")
-
+            estado = "otra"
         limpiar()
         return
 
