@@ -26,7 +26,7 @@ x = (ancho_pantalla // 2) - (ancho_ventana // 2)
 y = (alto_pantalla // 2) - (alto_ventana // 2)
 
 ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
-pantalla = tk.Label(ventana,text="Bienvenido\nBanco El Tigre",bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
+pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
 
 pantalla.pack(pady=20)
 
@@ -68,33 +68,54 @@ def aceptar():
     global cuenta
     global moneda_origen
     global moneda_destino
+    if numero_ingresado == "":
+        pantalla.config(text="Ingrese un numero")
+        return
 
-    # INICIO//////////////////////////////////////////
+    # INICIO/////////////////////////////////////
     if estado == "inicio":
 
-        pantalla.config(text="Seleccione tipo de cuenta:\n\n""1 Ahorro\n""2 Corriente\n""3 Extranjero")
+        if numero_ingresado == "1":
+            pantalla.config(text="Seleccione cuenta:\n\n1 Caja de ahorros\n2 Cuenta Extranjera\n\n9 Volver")
+            estado = "cuenta"
 
-        estado = "cuenta"
+        elif numero_ingresado == "0":
+            pantalla.config(text="Gracias por usar\nBanco El Tigre")
+            ventana.after(2000, ventana.destroy)
+            estado = "fin"
+
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Iniciar\n0 Salir")
+
         limpiar()
         return
 
-    # CUENTA//////////////////////////////////////////
+    # CUENTA/////////////////////////////////////////
     if estado == "cuenta":
 
         if numero_ingresado == "1":
-            cuenta = "ahorro"
+            cuenta = "cuenta1"
 
         elif numero_ingresado == "2":
-            cuenta = "corriente"
+            cuenta = "cuenta2"
 
-        elif numero_ingresado == "3":
-            cuenta = "extranjero"
+        elif numero_ingresado == "9":
+            pantalla.config(text="Banco El Tigre\n\n1 Iniciar\n0 Salir")
+            estado = "inicio"
+            limpiar()
+            return
 
-        pantalla.config(text="Opciones:\n""1 Retiro\n""2 Deposito\n""3 Consulta\n""4 Cambio\n""5 Salir")
+        else:
+            pantalla.config(text="Opcion invalida\n\n1 Caja de ahorros\n2 Cuenta extranjera\n9 Volver")
+            limpiar()
+            return
 
+        pantalla.config(text="Opciones:\n1 Retiro\n2 Deposito\n3 Consulta\n4 Cambio\n5 Salir\n9 Volver")
         estado = "menu"
         limpiar()
         return
+
+
 
     # MENU////////////////////////////////////
     if estado == "menu":
@@ -135,9 +156,14 @@ def aceptar():
 
             pantalla.config(text="Gracias por usar\nBanco El Tigre")
 
-            ventana.after(3000, reiniciar)
+            ventana.after(2000, ventana.destroy)
 
             estado = "fin"
+        elif numero_ingresado == "9":
+
+            pantalla.config(text="Seleccione cuenta:\n\n1 CAja de ahorros\n2 Cuenta Extranjera\n9 Volver")
+            estado = "cuenta"
+
 
         limpiar()
         return
@@ -153,6 +179,11 @@ def aceptar():
             moneda_origen = "libras"
         elif numero_ingresado == "4":
             moneda_origen = "euro"
+        else:
+            pantalla.config(text="Moneda invalida")
+            limpiar()
+            return
+
 
         pantalla.config(text="Moneda destino:\n\n""1 Bs\n2 USD\n3 GBP\n4 EUR")
 
@@ -171,6 +202,11 @@ def aceptar():
             moneda_destino = "libras"
         elif numero_ingresado == "4":
             moneda_destino = "euro"
+        else:
+            pantalla.config(text="Moneda invalida")
+            limpiar()
+            return
+
 
         pantalla.config(text="Ingrese monto a convertir:")
 
@@ -180,8 +216,17 @@ def aceptar():
 
     # MONTO CAMBIO
     if estado == "monto_cambio":
+        try:
+            monto = float(numero_ingresado)
+            if monto <= 0:
+                pantalla.config(text="Monto invalido\n\nIntente otra vez")
+                limpiar()
+                return
+        except:
+            pantalla.config(text="Entrada invalida")
+            limpiar()
+            return
 
-        monto = float(numero_ingresado)
 
         mensaje = convertir_gui(moneda_origen, moneda_destino, monto)
 
@@ -212,8 +257,16 @@ def aceptar():
 
     # MONTO NORMAL
     if estado == "monto":
-
-        monto = float(numero_ingresado)
+        try:
+            monto = float(numero_ingresado)
+            if monto <= 0:
+                pantalla.config(text="Monto invalido\n\nIntente otra vez")
+                limpiar()
+                return
+        except:
+            pantalla.config(text="Entrada invalida")
+            limpiar()
+            return
 
         if operacion == "retiro":
             mensaje = retirar_gui(moneda, monto)
@@ -239,7 +292,7 @@ def aceptar():
 
             pantalla.config(text="Gracias por usar\nBanco El Tigre")
 
-            ventana.after(3000, reiniciar)
+            ventana.after(2000, ventana.destroy)
 
             estado = "fin"
 
@@ -267,14 +320,15 @@ tk.Button(ventana,text="Borrar",bg="black",fg="#FFD100",width=15,command=limpiar
 
 #START SCREEN 
 
-pantalla.config(text="Banco El Tigre\n\n""Presione Aceptar\n""para comenzar")
+pantalla.config(text="Bienvenido a ""Banco El Tigre\n\n""1 Iniciar\n""0 Salir\n\n""Presione Aceptar")
+
 
 #para reniciar y hacerlo correr 
 def reiniciar():
 
     global estado
     estado = "inicio"
-    pantalla.config(text="Banco El Tigre\n\n""Presione Aceptar\n""para comenzar")
+    pantalla.config(text="Banco El Tigre\n\n1 Iniciar\n0 Salir")
 
     limpiar()
 ventana.mainloop()
