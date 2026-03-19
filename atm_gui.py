@@ -32,10 +32,8 @@ y = (alto_pantalla // 2) - (alto_ventana // 2)
 pantalla = tk.Label(ventana,bg="black",fg="#FFD100",font=("helvetica",20,"bold"),width=40,height=8,justify="left",anchor="nw",padx=15,pady=15)
 
 
-pantalla.pack(pady=10)
+pantalla.pack(pady=20)
 
-contenedor = tk.Frame(ventana, bg="#FFD100")
-contenedor.pack(expand=True)
 #TIGER LOGO//////////////////////////////////
 #anticrasheo
 import os
@@ -43,11 +41,11 @@ try:
     ruta = os.path.join(os.path.dirname(__file__), "tigre_logo.png")
 
     logo = tk.PhotoImage(file=ruta)
-    logo = logo.subsample(1, 1)
+    logo = logo.subsample(2, 2)
 
     logo_label = tk.Label(ventana, image=logo, bg="#FFD100")
     logo_label.image = logo
-    logo_label.pack(in_=contenedor, pady=5)
+    logo_label.pack(pady=10)
 
 
 except:
@@ -58,7 +56,7 @@ except:
 
 entrada = tk.Label(ventana,text="",bg="white",fg="black",font=("Courier",16),width=20)
 
-entrada.pack(pady=5)
+entrada.pack(pady=10)
 
 # FUNCTIONS///////////////////////
 
@@ -345,8 +343,7 @@ def aceptar():
 #KEYPAD /////////////////////////////////////////////
 
 frame_teclado = tk.Frame(ventana,bg="#FFD100")
-frame_teclado.pack(in_=contenedor, pady=10)
-
+frame_teclado.pack()
 #use of tuplas>?? check.....
 numeros = [(1,0,0),(2,0,1),(3,0,2),(4,1,0),(5,1,1),(6,1,2),(7,2,0),(8,2,1),(9,2,2),(0,3,1)]
 
@@ -359,10 +356,9 @@ for (num,r,c) in numeros:
 
 #buttones aceptar y borrar /////////////////////////
 
-tk.Button(contenedor, text="Aceptar", bg="black", fg="#FFD100", width=15, command=aceptar).pack(pady=10)
+tk.Button(ventana,text="Aceptar",bg="black",fg="#FFD100",width=15,command=aceptar).pack(pady=10)
 
-tk.Button(contenedor, text="Borrar", bg="black", fg="#FFD100", width=15, command=limpiar).pack()
-
+tk.Button(ventana,text="Borrar",bg="black",fg="#FFD100",width=15,command=limpiar).pack()
 
 #START SCREEN 
 
