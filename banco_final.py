@@ -515,10 +515,9 @@ def salir(opcion):
             return False
             break
         else:
-            print("Opcion no valida")
-            print("Esta seguro? ")
+            print("Esta seguro de que desea salir?" )
             print("Y o N")
-            saalir_fin = input()
+            seguro_salir = input()
 
 # Confirmacion salir
 def confirmacion_salir():
@@ -612,7 +611,7 @@ def cajero_fin(iniciar):
             saalir_fin = input()
             if saalir_fin == "Y":
                 print("Muchas gracias por usar nuestro servicio :3")
-                break
+                return
             elif saalir_fin == "N":
                 print("Bienvenido al Banco del Tigre")
                 print("Presione 1 para iniciar")
