@@ -351,7 +351,7 @@ for (num,r,c) in numeros:
 
     boton = tk.Button(frame_teclado,text=num,width=6,height=2,bg="black",fg="#FFD100",command=lambda n=num: presionar(n))
 
-    boton.grid(row=r,column=c,padx=5,pady=5)
+    boton.grid(row=r,column=c,padx=1,pady=5)
 
 
 #buttones aceptar y borrar /////////////////////////
